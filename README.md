@@ -12,5 +12,3 @@
 - Redux-saga
 - Styled-components
 - SWR
-
-
