@@ -1,0 +1,154 @@
+import {
+	storageAccessKey,
+	storageRefreshKey,
+	setStorageItem,
+	removeStorageItem,
+	getStorageItem,
+	storageAccessExp,
+	storageRefreshExp,
+	storageTokenType,
+} from "@utils/local-storage";
+import axios, { AxiosInstance } from "axios";
+import API_URL, { API_HOST, BasicResult } from "@apis/api";
+import { LoginRequest, SignUpRequest, LoginResult } from "@apis/auth/types";
+import { TOKEN_ERROR } from "@apis/errors";
+
+export interface IAuthService {
+	setAuthHeader(): {
+		headers: {
+			Authorization: string;
+			"Content-Type"?: string;
+		};
+	};
+	getNewToken(): Promise<boolean>;
+}
+
+class AuthService implements IAuthService {
+	private base: AxiosInstance;
+	private authUrl;
+
+	constructor() {
+		this.base = axios.create({
+			baseURL: API_HOST,
+		});
+		this.authUrl = API_URL.auth;
+	}
+
+	async signup(data: SignUpRequest) {
+		const { signup } = this.authUrl;
+
+		const response = await this.base.post(signup, data);
+		const result: BasicResult = await response.data;
+
+		return result;
+	}
+
+	async login(data: LoginRequest) {
+		const { login } = this.authUrl;
+
+		const response = await this.base.post(login, data);
+		const result: LoginResult = await response.data;
+
+		const {
+			data: { accessToken, refreshToken, expiresIn, refreshExpiresIn, tokenType },
+		} = result;
+
+		setStorageItem(storageAccessKey, accessToken);
+		setStorageItem(storageRefreshKey, refreshToken);
+		setStorageItem(storageAccessExp, expiresIn);
+		setStorageItem(storageRefreshExp, refreshExpiresIn);
+		setStorageItem(storageTokenType, tokenType);
+
+		return result;
+	}
+
+	async getNewToken() {
+		try {
+			const { token } = this.authUrl;
+
+			const preAccessToken = getStorageItem(storageAccessKey);
+			const preRefreshToken = getStorageItem(storageRefreshKey);
+			const preExpiresIn = getStorageItem(storageAccessExp);
+			const preRefreshExpiresIn = getStorageItem(storageRefreshExp);
+			const preTokenType = getStorageItem(storageTokenType);
+
+			const data = {
+				accessToken: preAccessToken,
+				refreshToken: preRefreshToken,
+				expiresIn: preExpiresIn,
+				refreshExpiresIn: preRefreshExpiresIn,
+				tokenType: preTokenType,
+			};
+
+			const response = await this.base.post(token, data);
+			const result: LoginResult = await response.data;
+
+			const {
+				data: { accessToken, refreshToken, expiresIn, refreshExpiresIn, tokenType },
+			} = result;
+
+			setStorageItem(storageAccessKey, accessToken);
+			setStorageItem(storageRefreshKey, refreshToken);
+			setStorageItem(storageAccessExp, expiresIn);
+			setStorageItem(storageRefreshExp, refreshExpiresIn);
+			setStorageItem(storageTokenType, tokenType);
+
+			return true;
+		} catch (error) {
+			this.logout();
+			throw new Error(TOKEN_ERROR);
+		}
+	}
+
+	logout() {
+		// const { logout } = this.authUrl;
+
+		// const accessToken = getStorageItem(storageAccessKey);
+		// const refreshToken = getStorageItem(storageRefreshKey);
+		// const expiresIn = getStorageItem(storageAccessExp);
+		// const refreshExpiresIn = getStorageItem(storageRefreshExp);
+		// const tokenType = getStorageItem(storageTokenType);
+
+		removeStorageItem(storageAccessKey);
+		removeStorageItem(storageRefreshKey);
+		removeStorageItem(storageAccessExp);
+		removeStorageItem(storageRefreshExp);
+		removeStorageItem(storageTokenType);
+
+		// if (!accessToken || !refreshToken || !expiresIn || !refreshExpiresIn || !tokenType) return null;
+
+		// const data = {
+		// 	accessToken,
+		// 	refreshToken,
+		// 	expiresIn,
+		// 	refreshExpiresIn,
+		// 	tokenType,
+		// };
+
+		// const config = {
+		// 	headers: {
+		// 		Authorization: `${tokenType} ${accessToken}`,
+		// 	},
+		// };
+
+		// const response = await this.base.post(logout, data, config);
+		// const result: BasicResult = await response.data;
+
+		// return result;
+	}
+
+	setAuthHeader() {
+		const accessToken = getStorageItem(storageAccessKey);
+		const tokenType = getStorageItem(storageTokenType);
+
+		const config = {
+			headers: {
+				Authorization: `${tokenType} ${accessToken}`,
+			},
+		};
+
+		return config;
+	}
+}
+
+export default AuthService;
