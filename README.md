@@ -1,4 +1,5 @@
-![oasis](https://github.com/numeru/oasis/blob/main/src/readme/oasis.png)
+![oasis](https://user-images.githubusercontent.com/68256639/150932775-15ca8b68-16b2-496a-ba0f-f1646ad83ceb.png)
+
 
 <p align="center">
   Oasis
