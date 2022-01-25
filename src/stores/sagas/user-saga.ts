@@ -38,8 +38,11 @@ export const apiWithInterceptor = () => {
 					const accessToken = getStorageItem(storageAccessKey);
 					const tokenType = getStorageItem(storageTokenType);
 
-					config.headers["Authorization"] = `${tokenType} ${accessToken}`;
-					return axios(config);
+					if (config.headers) {
+						config.headers["Authorization"] = `${tokenType} ${accessToken}`;
+
+						return axios(config);
+					}
 				}
 			}
 			return response;
