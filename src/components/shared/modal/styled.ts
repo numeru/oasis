@@ -1,5 +1,9 @@
 import styled from "styled-components";
 
+type StyledProps = {
+	$dark: boolean;
+};
+
 export const ModalContainer = styled.div`
 	position: absolute;
 	top: 0;
@@ -11,6 +15,7 @@ export const ModalContainer = styled.div`
 	height: 100%;
 	z-index: 10;
 	overflow: hidden;
+	background-color: ${({ $dark = false }: StyledProps) => ($dark ? "rgba(183, 183, 183, 0.3)" : "transparent")};
 `;
 
 export const ModalCard = styled.div`

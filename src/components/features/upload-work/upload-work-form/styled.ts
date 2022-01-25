@@ -39,6 +39,13 @@ export const UploadInputField = styled.li`
 	}
 `;
 
+export const UploadInputTitle = styled.p`
+	font-size: 1rem;
+	margin: 0 0 2% 0;
+	width: 100%;
+	font-family: var(--font-nanum-bold);
+`;
+
 export const UploadGuide = styled.p`
 	font-size: 0.75rem;
 	color: var(--color-dark-gray);
@@ -76,29 +83,6 @@ export const RemoveUploadedImageButton = styled.button`
 	float: right;
 	margin-bottom: 2%;
 	font-family: var(--font-nanum-bold);
-`;
-
-export const UploadedCoverImage = styled.img`
-	width: 100%;
-	height: auto;
-`;
-
-export const UploadedWorkImages = styled.ul`
-	width: 100%;
-
-	& > li {
-		width: 100%;
-
-		&:last-child {
-			margin-bottom: 15%;
-		}
-
-		& > img {
-			width: 100%;
-			height: auto;
-			box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.25);
-		}
-	}
 `;
 
 export const WorkTitleInput = styled.textarea`

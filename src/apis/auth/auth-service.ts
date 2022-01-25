@@ -11,7 +11,7 @@ import {
 import axios, { AxiosInstance } from "axios";
 import API_URL, { API_HOST, BasicResult } from "@apis/api";
 import { LoginRequest, SignUpRequest, LoginResult } from "@apis/auth/types";
-import { TOKEN_ERROR } from "@apis/errors";
+import { TOKEN_ERROR } from "@constants/errors";
 
 export interface IAuthService {
 	setAuthHeader(): {
@@ -101,40 +101,11 @@ class AuthService implements IAuthService {
 	}
 
 	logout() {
-		// const { logout } = this.authUrl;
-
-		// const accessToken = getStorageItem(storageAccessKey);
-		// const refreshToken = getStorageItem(storageRefreshKey);
-		// const expiresIn = getStorageItem(storageAccessExp);
-		// const refreshExpiresIn = getStorageItem(storageRefreshExp);
-		// const tokenType = getStorageItem(storageTokenType);
-
 		removeStorageItem(storageAccessKey);
 		removeStorageItem(storageRefreshKey);
 		removeStorageItem(storageAccessExp);
 		removeStorageItem(storageRefreshExp);
 		removeStorageItem(storageTokenType);
-
-		// if (!accessToken || !refreshToken || !expiresIn || !refreshExpiresIn || !tokenType) return null;
-
-		// const data = {
-		// 	accessToken,
-		// 	refreshToken,
-		// 	expiresIn,
-		// 	refreshExpiresIn,
-		// 	tokenType,
-		// };
-
-		// const config = {
-		// 	headers: {
-		// 		Authorization: `${tokenType} ${accessToken}`,
-		// 	},
-		// };
-
-		// const response = await this.base.post(logout, data, config);
-		// const result: BasicResult = await response.data;
-
-		// return result;
 	}
 
 	setAuthHeader() {

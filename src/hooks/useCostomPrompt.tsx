@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Prompt, useHistory } from "react-router";
+import { Prompt, useHistory } from "react-router-dom";
 
 type PromptLocation = {
 	hash: string;

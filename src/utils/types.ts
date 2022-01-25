@@ -38,3 +38,18 @@ export type WorkImage = {
 	thumbnail: string;
 	type: string;
 };
+
+export type Profile = {
+	uuid: string;
+	emailId: string;
+	userName: string;
+	universityName: string | null;
+	universityMajor: string | null;
+	universityVerify: string;
+	profileImgPath: string;
+	profileImgThumbnailPath: string;
+	profileDescription: string;
+	heartCount: number;
+	hasHeart: boolean;
+	ableUpdate: boolean;
+};

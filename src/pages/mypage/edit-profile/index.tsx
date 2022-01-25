@@ -3,13 +3,8 @@ import EditCancelAlertModal from "@components/features/edit-profile/cancel-alert
 import EditProfileForm from "@components/features/edit-profile/edit-profile-form";
 import Modal from "@components/shared/modal";
 import useCustomPrompt from "@hooks/useCostomPrompt";
-import UserService from "@apis/user/user-service";
 
-type Props = {
-	userService: UserService;
-};
-
-const EditProfile = ({ userService }: Props) => {
+const EditProfile = () => {
 	const [showAlertModal, setShowAlertModal] = useState(false);
 
 	const [showPrompt, setLeavePage, setIsEdited] = useCustomPrompt(setShowAlertModal);
@@ -18,7 +13,7 @@ const EditProfile = ({ userService }: Props) => {
 
 	return (
 		<>
-			<EditProfileForm userService={userService} setIsEdited={setIsEdited} isFormSubmitted={isFormSubmitted} />
+			<EditProfileForm setIsEdited={setIsEdited} isFormSubmitted={isFormSubmitted} />
 			{showPrompt()}
 			{showAlertModal && (
 				<Modal>

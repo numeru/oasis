@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router";
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import WorkDetailContent from "@components/features/detail/work-detail-content";
-import WorkService from "@apis/work/work-service";
 
 const DetailContainer = styled.main`
 	width: 100%;
@@ -12,11 +11,7 @@ type Params = {
 	id: string;
 };
 
-type Props = {
-	workService: WorkService;
-};
-
-const WorkDetail = ({ workService }: Props) => {
+const WorkDetail = () => {
 	const params = useParams<Params>();
 	const [workId, setWorkId] = useState(params.id);
 
@@ -26,7 +21,7 @@ const WorkDetail = ({ workService }: Props) => {
 
 	return (
 		<DetailContainer>
-			<WorkDetailContent workId={workId} workService={workService} />
+			<WorkDetailContent workId={workId} />
 		</DetailContainer>
 	);
 };

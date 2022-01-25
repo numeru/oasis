@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import LoginForm from "@components/features/login/login-form";
 import { FindAccountButton, LoginHeader } from "@components/features/login/login-form/styled";
-import AuthService from "@apis/auth/auth-service";
 
 const LoginContainer = styled.main`
 	width: 100%;
@@ -13,15 +12,7 @@ const LoginContainer = styled.main`
 	align-items: center;
 `;
 
-type Props = {
-	authService: AuthService;
-};
-
-const Login = ({ authService }: Props) => {
-	const handleOpenMail = () => {
-		window.open("mailto:oasis.yeha@gmail.com", "_blank");
-	};
-
+const Login = () => {
 	return (
 		<LoginContainer>
 			<LoginHeader>
@@ -29,11 +20,9 @@ const Login = ({ authService }: Props) => {
 				<h2>로그인해주세요</h2>
 			</LoginHeader>
 
-			<LoginForm authService={authService} />
+			<LoginForm />
 
-			<FindAccountButton role="link" onClick={handleOpenMail}>
-				이메일/비밀번호가 기억나지 않으세요?
-			</FindAccountButton>
+			<FindAccountButton to="/inquiry/account">비밀번호를 잊어버리셨나요?</FindAccountButton>
 		</LoginContainer>
 	);
 };

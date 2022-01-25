@@ -1,65 +1,52 @@
 import React from "react";
-import InstaLogo from "@assets/images/layout/instagram_logo.svg";
-import {
-	LayoutFooter,
-	FooterInstaButton,
-	FooterInstaLogo,
-	FooterOptionList,
-	FooterOptionButton,
-	FooterCompanyInfo,
-	FooterCopyright,
-} from "./styled";
+import InstaIcon from "@assets/images/layout/insta_icon.svg";
+import MailIcon from "@assets/images/layout/mail_icon.svg";
+import { LayoutFooter, FooterOptionList, FooterOptionButton, FooterCompanyInfo, FooterCopyright } from "./styled";
 
 const Footer = () => {
 	const handleClickTerms = () => {
-		window.open("https://o4sis.notion.site/63695a4efa6747d196f0719a70f01da4", "_blank");
+		window.open("https://o4sis.notion.site/63695a4efa6747d196f0719a70f01da4", "_blank", "noopener");
 	};
 
 	const handleClickPrivacy = () => {
-		window.open("https://o4sis.notion.site/29f600ddaab743588efaab094e53d7ff", "_blank");
+		window.open("https://o4sis.notion.site/29f600ddaab743588efaab094e53d7ff", "_blank", "noopener");
 	};
 
 	const handleClickInstagram = () => {
-		window.open("https://www.instagram.com/o4sis_official", "_blank");
+		window.open("https://www.instagram.com/o4sis_official", "_blank", "noopener");
 	};
 
 	const handleOpenMail = () => {
-		window.open("mailto:oasis.yeha@gmail.com", "_blank");
+		window.open("mailto:oasis.yeha@gmail.com", "_blank", "noopener");
 	};
 
 	return (
 		<LayoutFooter>
-			<FooterInstaButton role="link" onClick={handleClickInstagram}>
-				<FooterInstaLogo src={InstaLogo} alt="" />
-			</FooterInstaButton>
-
 			<FooterOptionList>
 				<li>
-					<FooterOptionButton role="link" onClick={handleClickPrivacy}>
-						개인정보처리방침
-					</FooterOptionButton>
+					<FooterOptionButton onClick={handleClickPrivacy}>개인정보처리방침</FooterOptionButton>
 				</li>
 				<li>
-					<FooterOptionButton role="link" onClick={handleClickTerms}>
-						이용약관
-					</FooterOptionButton>
-				</li>
-				<li>
-					<FooterOptionButton role="link" onClick={handleOpenMail}>
-						문의하기
-					</FooterOptionButton>
+					<FooterOptionButton onClick={handleClickTerms}>서비스이용약관</FooterOptionButton>
 				</li>
 			</FooterOptionList>
 			<FooterCompanyInfo>
-				(주) YEHA <br />
-				대표 조혜림 <br />
-				사업자등록번호 01-1234-1234
-				<br />
-				통신판매업 신고번호 12341234
-				<br />
-				서울특별시 강남구 압구정로 빌딩 123-4
+				<ul>
+					<li>
+						<button onClick={handleClickInstagram} aria-label="오아시스 공식 인스타그램">
+							<img src={InstaIcon} alt="" />
+							oasis__official
+						</button>
+					</li>
+					<li>
+						<button onClick={handleOpenMail} aria-label="오아시스 메일">
+							<img src={MailIcon} alt="" />
+							oasis.yeha@gmail.com
+						</button>
+					</li>
+				</ul>
 			</FooterCompanyInfo>
-			<FooterCopyright>All rights reserved</FooterCopyright>
+			<FooterCopyright>Made by YEHA &gt;</FooterCopyright>
 		</LayoutFooter>
 	);
 };

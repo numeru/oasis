@@ -155,7 +155,6 @@ export const userSlice = createSlice({
 
 export default userSlice;
 
-// actions
 export const {
 	userLogin,
 	userLogout,

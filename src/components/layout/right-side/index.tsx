@@ -37,8 +37,8 @@ const RightSide = ({ children }: Props) => {
 			{checkUserDone && (
 				<>
 					<Header />
-					{responseSuccess && <AlertSuccessModal>{responseSuccessMessage}</AlertSuccessModal>}
-					{responseError && <AlertFailModal>{responseErrorMessage}</AlertFailModal>}
+					{responseSuccess && <AlertSuccessModal role="status">{responseSuccessMessage}</AlertSuccessModal>}
+					{responseError && <AlertFailModal role="alert">{responseErrorMessage}</AlertFailModal>}
 					{children}
 					<Footer />
 				</>

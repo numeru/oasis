@@ -18,6 +18,8 @@ import {
 import { delay } from "@stores/sagas/root";
 import { getStorageItem, storageAccessKey, storageTokenType } from "@utils/local-storage";
 import { CheckUserResult } from "@apis/auth/types";
+import { RESPONSE_STATUS_200, RESPONSE_STATUS_400, RESPONSE_STATUS_500 } from "@constants/api";
+import { ALERT_TIME_OUT } from "@constants/alert";
 
 const authService = new AuthService();
 
@@ -29,7 +31,7 @@ export const apiWithInterceptor = () => {
 	base.interceptors.response.use(
 		async (response) => {
 			const { config, data } = response;
-			if (data?.statusCode >= 400 && data?.statusCode < 500) {
+			if (data?.statusCode >= RESPONSE_STATUS_400 && data?.statusCode < RESPONSE_STATUS_500) {
 				const result = await authService.getNewToken();
 
 				if (result) {
@@ -47,7 +49,7 @@ export const apiWithInterceptor = () => {
 				config,
 				response: { status },
 			} = error;
-			if (status >= 400 && status < 500) {
+			if (status >= 400 && status < RESPONSE_STATUS_500) {
 				const result = await authService.getNewToken();
 
 				if (result) {
@@ -88,12 +90,12 @@ async function checkUserRequest() {
 }
 
 function* handleError() {
-	yield delay(3000);
+	yield delay(ALERT_TIME_OUT);
 	yield put(responseErrorDone());
 }
 
 function* handleSuccess() {
-	yield delay(3000);
+	yield delay(ALERT_TIME_OUT);
 	yield put(responseSuccessDone());
 }
 
@@ -112,7 +114,7 @@ function* handleCheckUser() {
 			data: { user },
 		} = result;
 
-		if (statusCode === 200 && user) {
+		if (statusCode === RESPONSE_STATUS_200 && user) {
 			yield put(setUserData(user));
 		}
 		yield put(checkUserDone());

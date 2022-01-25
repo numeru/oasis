@@ -3,7 +3,7 @@ import styled, { css } from "styled-components";
 import { Link } from "react-router-dom";
 
 type StyledProps = {
-	$checkUniversity?: boolean;
+	$isUniversityVerified?: boolean;
 	$imageRatio?: boolean;
 };
 export const UserInfoContainer = styled.section`
@@ -64,7 +64,7 @@ export const PersonalInfo = styled.div`
 
 		&:nth-child(2) {
 			margin: 0 0 4% 0;
-			${({ $checkUniversity }: StyledProps) => ($checkUniversity ? "" : "color: var(--color-dark-gray);")}
+			${({ $isUniversityVerified }: StyledProps) => ($isUniversityVerified ? "" : "color: var(--color-dark-gray);")}
 		}
 	}
 `;

@@ -1,10 +1,10 @@
-import React from "react";
-import { Route, Switch } from "react-router";
+import React, { useEffect } from "react";
+import { Route, Switch } from "react-router-dom";
 import styled from "styled-components";
 import SignUpForm from "@components/features/sign-up/sign-up-form";
 import { SignUpHeader } from "@components/features/sign-up/sign-up-form/styled";
-import CheckValidation from "@pages/sign-up/check-validation";
-import AuthService from "@apis/auth/auth-service";
+import EmailCertification from "@pages/sign-up/email-certification";
+import SignUpFormService from "@services/signup_form_service";
 
 const SignUpContainer = styled.main`
 	width: 100%;
@@ -15,23 +15,29 @@ const SignUpContainer = styled.main`
 	align-items: center;
 `;
 
-type Props = {
-	authService: AuthService;
-};
+const signUpFormService = new SignUpFormService();
 
-const SignUp = ({ authService }: Props) => {
+const SignUp = () => {
+	useEffect(() => {
+		return () => {
+			signUpFormService.resetAllInputs();
+		};
+	}, []);
+
 	return (
 		<SignUpContainer>
 			<SignUpHeader>
 				<span>👋</span>
-				<h2>회원가입해주세요</h2>
+				<h2>회원가입</h2>
 			</SignUpHeader>
 			<Switch>
 				<Route exact path="/signup">
-					<SignUpForm authService={authService} />
+					<SignUpForm signUpFormService={signUpFormService} />
 				</Route>
 
-				<Route exact path="/signup/validation" component={CheckValidation} />
+				<Route exact path="/signup/certification">
+					<EmailCertification signUpFormService={signUpFormService} />
+				</Route>
 			</Switch>
 		</SignUpContainer>
 	);

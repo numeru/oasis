@@ -1,32 +1,11 @@
 import React, { useEffect } from "react";
 import FeedList from "@components/features/home/feed-list";
-import styled from "styled-components";
-import Banner from "@assets/images/home/oasis_banner.png";
-import { useHistory, useLocation } from "react-router";
+import { Banner } from "@assets/device-images";
+import { useHistory, useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { responseSuccessGuide } from "@stores/slices/user-slice";
-
-const HomeBanner = styled.button`
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	margin-top: 5.6%;
-	padding: 0 3.3%;
-	width: 100%;
-	border-radius: 24px;
-	background-color: transparent;
-
-	& > img {
-		width: 100%;
-		height: auto;
-		border-radius: 24px;
-	}
-`;
-
-const HomeContainer = styled.main`
-	width: 100%;
-	padding: 5.6% 3.3%;
-`;
+import { HomeBanner, HomeContainer } from "./styled";
+import Picture from "@components/shared/picture";
 
 type Location = {
 	signup_success?: boolean;
@@ -57,13 +36,14 @@ const Home = () => {
 		window.open(
 			"https://o4sis.notion.site/19df71865e5149b898db49068763b464?v=cdbeac27833c4840809963fa1c8c6224",
 			"_blank",
+			"noopener",
 		);
 	};
 
 	return (
 		<>
-			<HomeBanner type="button" role="link" onClick={handleClickBanner}>
-				<img src={Banner} alt="" />
+			<HomeBanner type="button" onClick={handleClickBanner} aria-label="오아시스 서비스 소개 배너">
+				<Picture type="png" minType="webp" image={Banner} alt="" />
 			</HomeBanner>
 			<HomeContainer>
 				<FeedList />

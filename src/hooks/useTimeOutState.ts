@@ -1,17 +1,18 @@
 import React, { useState, useEffect } from "react";
+import { ALERT_TIME_OUT } from "@constants/alert";
 
 type ReturnTypes = [boolean, React.Dispatch<React.SetStateAction<boolean>>];
 
-const useTimeOutState = (): ReturnTypes => {
+const useTimeOutState = (time?: number): ReturnTypes => {
 	const [state, setState] = useState(false);
 
 	useEffect(() => {
 		if (state) {
-			const timeout = setTimeout(() => setState(false), 3000);
+			const timeout = setTimeout(() => setState(false), time || ALERT_TIME_OUT);
 
 			return () => clearTimeout(timeout);
 		}
-	}, [state]);
+	}, [time, state]);
 
 	return [state, setState];
 };

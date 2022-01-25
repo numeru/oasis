@@ -29,7 +29,7 @@ const MyInfo = () => {
 		profileImgPath,
 	} = userSelector;
 
-	const checkUniversity = useMemo(
+	const isUniversityVerified = useMemo(
 		() => universityVerify === "VERIFICATION",
 
 		[universityVerify],
@@ -38,15 +38,18 @@ const MyInfo = () => {
 	const imageRatio = useImageSize(profileImgPath);
 
 	return (
-		<UserInfoContainer>
+		<UserInfoContainer aria-labelledby="mypage_my_info_label">
+			<h2 id="mypage_my_info_label" className="a11y-hidden">
+				내 정보
+			</h2>
 			<UserProfile>
 				<UserImageWrapper>
-					<UserImageBlank src={profileImgPath || UserProfileBlank} alt="user_profile" $imageRatio={imageRatio} />
+					<UserImageBlank src={profileImgPath || UserProfileBlank} alt="" $imageRatio={imageRatio} />
 				</UserImageWrapper>
 
-				<PersonalInfo $checkUniversity={checkUniversity}>
+				<PersonalInfo $isUniversityVerified={isUniversityVerified}>
 					<p>{userName}</p>
-					<p>{checkUniversity ? `${universityName} ${universityMajor}` : "대학교 미인증"}</p>
+					<p>{isUniversityVerified ? `${universityName} ${universityMajor}` : "대학교 미인증"}</p>
 					<UserLikeInfo>
 						<span>
 							<LikeImage /> <span>{heartCount}</span>

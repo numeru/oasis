@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
 import UserInfo from "@components/features/user/user-info";
 import UserWorks from "@components/features/user/user-works";
-import { Redirect, useParams } from "react-router";
+import { Redirect, useParams } from "react-router-dom";
 import styled from "styled-components";
-import UserService from "@apis/user/user-service";
 import { useSelector } from "react-redux";
 import { selectUser } from "@stores/store";
 
@@ -17,11 +16,7 @@ type Params = {
 	id: string;
 };
 
-type Props = {
-	userService: UserService;
-};
-
-const User = ({ userService }: Props) => {
+const User = () => {
 	const params = useParams<Params>();
 	const [userId, setUserId] = useState(params.id);
 
@@ -38,7 +33,7 @@ const User = ({ userService }: Props) => {
 
 	return (
 		<UserPageContainer>
-			<UserInfo userId={userId} userService={userService} />
+			<UserInfo userId={userId} />
 			<UserWorks userId={userId} />
 		</UserPageContainer>
 	);

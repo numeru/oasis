@@ -20,7 +20,7 @@ const EditAlertConatiner = styled.div`
 	}
 `;
 
-const AlertButtonList = styled.ul`
+const LongAlertButtonList = styled.ul`
 	display: flex;
 	align-items: center;
 	position: relative;
@@ -62,10 +62,15 @@ type Props = {
 
 const EditCancelAlertModal = ({ setShowAlertModal, setLeavePage, setIsFormSubmitted }: Props) => {
 	return (
-		<EditAlertConatiner>
-			<p>아직 프로필을 저장하기 않았어요</p>
-			<p>나의 아뜰리에 페이지로 돌아가기 전에 내용을 저장할까요?</p>
-			<AlertButtonList>
+		<EditAlertConatiner
+			role="alertdialog"
+			aria-labelledby="cancel_alert_modal_label"
+			aria-describedby="cancel_alert_modal_description"
+			aria-modal="true"
+		>
+			<p id="cancel_alert_modal_label">아직 프로필을 저장하기 않았어요</p>
+			<p id="cancel_alert_modal_description">나의 아뜰리에 페이지로 돌아가기 전에 내용을 저장할까요?</p>
+			<LongAlertButtonList>
 				<li>
 					<button onClick={() => setIsFormSubmitted(true)}>저장하기</button>
 				</li>
@@ -75,7 +80,7 @@ const EditCancelAlertModal = ({ setShowAlertModal, setLeavePage, setIsFormSubmit
 				<li>
 					<button onClick={() => setShowAlertModal(false)}>취소</button>
 				</li>
-			</AlertButtonList>
+			</LongAlertButtonList>
 		</EditAlertConatiner>
 	);
 };

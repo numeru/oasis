@@ -1,125 +1,58 @@
-import React, { useMemo, useState } from "react";
-
-import {
-	LoginButton,
-	LoginFormContainer,
-	LoginFormField,
-	LoginFormLabel,
-	LoginFormInput,
-	MoveToSignUpButton,
-	LoginAlertMessage,
-} from "./styled";
+import React, { useState } from "react";
 import useInput from "@hooks/useInput";
-import AuthService from "@apis/auth/auth-service";
-import { useHistory } from "react-router";
-import { useDispatch } from "react-redux";
-import { responseErrorWarning, throwTokenError, userLogin } from "@stores/slices/user-slice";
 import TogglePasswordButton from "@components/shared/toggle-password-button";
-import { TOKEN_ERROR } from "@apis/errors";
+import useLoginForm from "@hooks/useLoginForm";
+import FormItem from "@components/shared/form-item";
+import { FormAlertMessage, FormField, FormInput, FormLabel } from "@components/shared/form-item/styled";
+import { LoginButton, LoginFormContainer, MoveToSignUpButton } from "./styled";
 
-type Props = {
-	authService: AuthService;
-};
-
-const LoginForm = ({ authService }: Props) => {
-	const [email, handleEmail, setEmail] = useInput("");
-	const [password, handlePassword, setPassword] = useInput("");
-
-	const [emailValidation, setEmailValidation] = useState(true);
-
-	const [passwordlValidation, setPasswordValidation] = useState(true);
+const LoginForm = () => {
+	const [email, handleEmail] = useInput("");
+	const [password, handlePassword] = useInput("");
 
 	const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
-	const checkAllInputsValidation = () => {
-		setEmailValidation(email.trim() !== "");
-		setPasswordValidation(password.trim() !== "");
-
-		return !emailValidation || !passwordlValidation;
-	};
-
-	const isThereBlankInput = useMemo(
-		() => email.trim() === "" || password.trim() === "",
-
-		[email, password],
-	);
-
-	const history = useHistory();
-
-	const dispatch = useDispatch();
-
-	const login = async () => {
-		const data = {
-			emailId: email,
-			password: password,
-		};
-
-		try {
-			const {
-				statusCode,
-				data: { message },
-			} = await authService.login(data);
-
-			if (statusCode >= 400) {
-				dispatch(responseErrorWarning(message || "잠시 후 다시 시도해주세요"));
-				return;
-			}
-
-			if (statusCode === 200) {
-				dispatch(userLogin());
-				history.push({
-					pathname: "/",
-					state: {
-						login_success: true,
-					},
-				});
-			}
-		} catch (error: any) {
-			dispatch(responseErrorWarning(error.response.data?.error?.message || "잠시 후 다시 시도해주세요"));
-		}
-	};
-
-	const handleSubmitLoginForm = (e: React.FormEvent<HTMLFormElement>) => {
-		e.preventDefault();
-
-		checkAllInputsValidation();
-
-		if (isThereBlankInput) return;
-
-		login();
-	};
+	const [emailValidation, passwordlValidation, handleSubmitLoginForm] = useLoginForm(email, password);
 
 	return (
 		<LoginFormContainer onSubmit={handleSubmitLoginForm}>
 			<ul>
-				<LoginFormField>
-					<LoginFormLabel htmlFor="login_email">이메일</LoginFormLabel>
-					<LoginFormInput
-						id="login_email"
-						type="text"
-						placeholder="이메일을 입력해주세요"
-						value={email}
-						onChange={handleEmail}
-					/>
-					{!emailValidation && <LoginAlertMessage>이메일을 입력해주세요</LoginAlertMessage>}
-				</LoginFormField>
-				<LoginFormField>
-					<LoginFormLabel htmlFor="login_password">비밀번호</LoginFormLabel>
+				<FormItem
+					id="login_email"
+					label="이메일"
+					type="text"
+					placeholder="이메일을 입력해주세요"
+					value={email}
+					handleChange={handleEmail}
+					isValid={emailValidation}
+					validationMessage="이메일을 입력해주세요"
+					required
+				/>
+
+				<FormField>
+					<FormLabel htmlFor="login_password">비밀번호</FormLabel>
 					<div>
-						<LoginFormInput
+						<FormInput
 							id="login_password"
 							type={isPasswordVisible ? "text" : "password"}
 							placeholder="비밀번호를 입력해주세요"
 							value={password}
 							onChange={handlePassword}
+							aria-required="true"
+							aria-invalid={!passwordlValidation}
+							aria-errormessage="login_password_validation_error_message"
 						/>
 						{password !== "" && (
 							<TogglePasswordButton isPasswordVisible={isPasswordVisible} setIsPasswordVisible={setIsPasswordVisible} />
 						)}
 					</div>
 
-					{!passwordlValidation && <LoginAlertMessage>비밀번호를 입력해주세요</LoginAlertMessage>}
-				</LoginFormField>
+					{!passwordlValidation && (
+						<FormAlertMessage id="login_password_validation_error_message" role="alert">
+							비밀번호를 입력해주세요
+						</FormAlertMessage>
+					)}
+				</FormField>
 			</ul>
 
 			<LoginButton type="submit">로그인</LoginButton>

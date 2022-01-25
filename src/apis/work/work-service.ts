@@ -3,6 +3,7 @@ import API_URL, { API_HOST, BasicResult } from "@apis/api";
 import AuthService, { IAuthService } from "@apis/auth/auth-service";
 import { UploadWorkRequest } from "./types";
 import { getStorageItem, storageAccessKey, storageTokenType } from "@utils/local-storage";
+import { RESPONSE_STATUS_400, RESPONSE_STATUS_500 } from "@constants/api";
 
 class WorkService {
 	private base: AxiosInstance;
@@ -17,7 +18,7 @@ class WorkService {
 		this.base.interceptors.response.use(
 			async (response) => {
 				const { config, data } = response;
-				if (data?.statusCode >= 400 && data?.statusCode < 500) {
+				if (data?.statusCode >= RESPONSE_STATUS_400 && data?.statusCode < RESPONSE_STATUS_500) {
 					const result = await this.authService.getNewToken();
 
 					if (result) {
@@ -37,7 +38,7 @@ class WorkService {
 					response: { status },
 				} = error;
 
-				if (status >= 400 && status < 500) {
+				if (status >= RESPONSE_STATUS_400 && status < RESPONSE_STATUS_500) {
 					const result = await this.authService.getNewToken();
 
 					if (result) {

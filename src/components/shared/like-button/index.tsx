@@ -47,7 +47,13 @@ type Props = {
 
 const LikeButton = ({ isLikeClicked, handleClickButton, heartCount }: Props) => {
 	return (
-		<UserLikeButton isLikeClicked={isLikeClicked} onClick={handleClickButton}>
+		<UserLikeButton
+			isLikeClicked={isLikeClicked}
+			onClick={handleClickButton}
+			role="switch"
+			aria-label="좋아요"
+			aria-checked={isLikeClicked}
+		>
 			{isLikeClicked ? <ClickedLikeImage /> : <UnClickedLikeImage />} <span>{heartCount || "0"}</span>
 		</UserLikeButton>
 	);
