@@ -100,7 +100,7 @@ const config = {
 		path: path.join(__dirname, "dist"),
 		filename: "[name].js",
 		chunkFilename: "chunk.[name].[chunkhash].js",
-		publicPath: "/dist/",
+		publicPath: "/",
 		clean: true,
 	},
 	devServer: {
