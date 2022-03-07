@@ -15,8 +15,6 @@
 
 ## 🛠 기술 스택
 
-<br />
-
 [![TypeScript Badge](https://img.shields.io/badge/Typescript-235A97?style=flat-square&logo=Typescript&logoColor=white)]()
 [![React Badge](https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=React&logoColor=white)]()
 [![webpack Badge](https://img.shields.io/badge/Webpack-8DD6F9?style=flat-square&logo=webpack&logoColor=white)]()
@@ -30,8 +28,6 @@
 <br />
 
 ## 📂 폴더 구조
-
-<br />
 
 ```
 client
