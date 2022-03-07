@@ -1,32 +1,20 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { MdChevronRight } from "react-icons/md";
-import AuthService from "@apis/auth/auth-service";
-import { Redirect, useHistory } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { userLogout } from "@stores/slices/user-slice";
+import { Redirect } from "react-router-dom";
+import { useSelector } from "react-redux";
 import { AboutUser, LogoutButton, SettingsContainer, SettingsMenus } from "./styled";
 import SchoolCertification from "@pages/settings/school-certification";
 import { Route, Switch } from "react-router-dom";
 import { selectUser } from "@stores/store";
 import CertificationResult from "./school-certification/result";
 import ChangePassword from "./change-password";
+import useLogout from "@hooks/useLogout";
 
-type Props = {
-	authService: AuthService;
-};
-
-const Settings = ({ authService }: Props) => {
+const Settings = () => {
 	const { isLogin, userName, emailId } = useSelector(selectUser);
-	const history = useHistory();
 
-	const dispatch = useDispatch();
-
-	const handleClickLogout = async () => {
-		dispatch(userLogout());
-		authService.logout();
-		history.push("/");
-	};
+	const handleClickLogoutButton = useLogout();
 
 	const handleClickNotices = () => {
 		window.open("https://o4sis.notion.site/505d741305a149c6b029aa435af054f6", "_blank", "noopener");
@@ -83,7 +71,7 @@ const Settings = ({ authService }: Props) => {
 						</li>
 					</SettingsMenus>
 					{isLogin && (
-						<LogoutButton type="button" onClick={handleClickLogout}>
+						<LogoutButton type="button" onClick={handleClickLogoutButton}>
 							로그아웃
 						</LogoutButton>
 					)}

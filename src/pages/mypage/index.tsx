@@ -6,8 +6,6 @@ import { Redirect, Route, Switch } from "react-router-dom";
 import EditProfile from "@pages/mypage/edit-profile";
 import UploadWork from "@pages/mypage/upload-work";
 import Likes from "./likes";
-import { useSelector } from "react-redux";
-import { selectUser } from "@stores/store";
 
 const MyPageContainer = styled.main`
 	width: 100%;
@@ -19,13 +17,6 @@ const MyPageContainer = styled.main`
 `;
 
 const MyPage = () => {
-	const userSelector = useSelector(selectUser);
-	const { checkUserComplete, isLogin } = userSelector;
-
-	if (checkUserComplete && !isLogin) {
-		return <Redirect to="/login" />;
-	}
-
 	return (
 		<MyPageContainer>
 			<Switch>

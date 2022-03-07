@@ -1,57 +1,59 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import WorkService from "@apis/work/work-service";
 import { TOKEN_ERROR } from "@constants/errors";
 import { BASIC_ERROR_MESSAGE, RESPONSE_STATUS_200, RESPONSE_STATUS_400 } from "@constants/api";
 import { useHistory } from "react-router-dom";
 import { responseErrorWarning, throwTokenError } from "@stores/slices/user-slice";
 import { useDispatch } from "react-redux";
-import { UserUploadFile, WorkImage } from "@utils/types";
+import { WorkImage } from "@utils/types";
 
 const workService = new WorkService();
 
 type BlankUploadFormInputs = {
 	selectedCategory: boolean;
-	coverImage: boolean;
 	title: boolean;
 	description: boolean;
 	workImages: boolean;
+	tags: boolean;
 };
 
 type UploadFormInputs = {
 	selectedCategory: string;
-	coverImage: UserUploadFile | null;
 	title: string;
 	description: string;
 	workImages: WorkImage[];
+	tags: string;
 };
 
 type ReturnType = [BlankUploadFormInputs, boolean, (e: React.FormEvent<HTMLFormElement>) => Promise<void>];
 
 const useUploadWorkForm = (
-	{ selectedCategory, coverImage, title, description, workImages }: UploadFormInputs,
+	{ selectedCategory, title, description, workImages, tags }: UploadFormInputs,
 	setIsEdited: React.Dispatch<React.SetStateAction<boolean>>,
 ): ReturnType => {
 	const [blankInputs, setBlankInputs] = useState<BlankUploadFormInputs>({
 		selectedCategory: false,
-		coverImage: false,
 		title: false,
 		description: false,
 		workImages: false,
+		tags: false,
 	});
 
 	const findBlanklInputs = () => {
 		setBlankInputs({
 			selectedCategory: selectedCategory === "",
-			coverImage: coverImage === null,
 			title: title === "",
 			description: description === "",
 			workImages: workImages.length === 0,
+			tags: tags === "",
 		});
 
-		return (
-			selectedCategory === "" || title === "" || description === "" || workImages.length === 0 || coverImage === null
-		);
+		return selectedCategory === "" || title === "" || description === "" || workImages.length === 0 || tags === "";
 	};
+
+	useEffect(() => {
+		setIsEdited(selectedCategory !== "" || title !== "" || description !== "" || workImages.length > 0 || tags !== "");
+	}, [selectedCategory, title, description, workImages, tags]);
 
 	const [isFormSubmitted, setIsFormSubmitted] = useState(false);
 
@@ -72,7 +74,6 @@ const useUploadWorkForm = (
 				title,
 				description,
 				category: selectedCategory,
-				coverFile: coverImage!.file,
 				artFiles: workImages,
 			};
 

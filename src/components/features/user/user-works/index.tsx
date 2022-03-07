@@ -14,10 +14,10 @@ const UserWorks = ({ userId }: Props) => {
 	return (
 		<WorksContainer works={allUserWorks.length} aria-labelledby="user_works_label">
 			<h2 id="user_works_label" className="a11y-hidden">
-				유저 작업물
+				유저 프로젝트
 			</h2>
 			{allUserWorks?.length === 0 ? (
-				<EmptyGuideBox>아직 등록된 작업물이 없어요</EmptyGuideBox>
+				<EmptyGuideBox>아직 등록된 프로젝트가 없어요</EmptyGuideBox>
 			) : (
 				<>
 					<UploadedMyWorks>

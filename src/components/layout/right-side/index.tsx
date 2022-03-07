@@ -1,10 +1,13 @@
-import React, { ReactNode, useMemo } from "react";
+import React, { ReactNode } from "react";
 import Footer from "./footer";
 import Header from "./header";
 import styled from "styled-components";
 import { AlertFailModal, AlertSuccessModal } from "@components/shared/alert-messages/styled";
 import { useSelector } from "react-redux";
-import { selectUser } from "@stores/store";
+import { selectUI, selectUser } from "@stores/store";
+import { LoadingIndicator, LoadingIndicatorContainer } from "@components/shared/loading-indicator";
+import Loadingindicator from "@assets/images/loadingIndicator/loading_indicator.png";
+import SubHeader from "./sub-header";
 
 const RightContainer = styled.div`
 	width: 45%;
@@ -26,21 +29,34 @@ type Props = {
 };
 
 const RightSide = ({ children }: Props) => {
-	const userSelector = useSelector(selectUser);
+	const {
+		responseError,
+		responseErrorMessage,
+		responseSuccess,
+		responseSuccessMessage,
+		checkUserComplete,
+		checkUserLoading,
+	} = useSelector(selectUser);
 
-	const { responseError, responseErrorMessage, responseSuccess, responseSuccessMessage, checkUserComplete } =
-		userSelector;
-	const checkUserDone = useMemo(() => checkUserComplete, [checkUserComplete]);
+	const { headerType } = useSelector(selectUI);
 
 	return (
 		<RightContainer>
-			{checkUserDone && (
+			{checkUserLoading ? (
+				<LoadingIndicatorContainer>
+					<LoadingIndicator src={Loadingindicator} alt="loading" />
+				</LoadingIndicatorContainer>
+			) : (
 				<>
-					<Header />
-					{responseSuccess && <AlertSuccessModal role="status">{responseSuccessMessage}</AlertSuccessModal>}
-					{responseError && <AlertFailModal role="alert">{responseErrorMessage}</AlertFailModal>}
-					{children}
-					<Footer />
+					{checkUserComplete && (
+						<>
+							{headerType === "default" ? <Header /> : <SubHeader />}
+							{responseSuccess && <AlertSuccessModal role="status">{responseSuccessMessage}</AlertSuccessModal>}
+							{responseError && <AlertFailModal role="alert">{responseErrorMessage}</AlertFailModal>}
+							{children}
+							<Footer />
+						</>
+					)}
 				</>
 			)}
 		</RightContainer>

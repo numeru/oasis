@@ -25,11 +25,9 @@ class WorkService {
 						const accessToken = getStorageItem(storageAccessKey);
 						const tokenType = getStorageItem(storageTokenType);
 
-						if (config.headers) {
-							config.headers["Authorization"] = `${tokenType} ${accessToken}`;
+						config.headers["Authorization"] = `${tokenType} ${accessToken}`;
 
-							return axios(config);
-						}
+						return axios(config);
 					}
 				}
 				return response;
@@ -59,7 +57,7 @@ class WorkService {
 		this.authService = new AuthService();
 	}
 
-	async uploadWork({ title, description, category, coverFile, artFiles }: UploadWorkRequest) {
+	async uploadWork({ title, description, category, artFiles }: UploadWorkRequest) {
 		const { upload } = this.workUrl;
 
 		const config = this.authService.setAuthHeader();
@@ -70,7 +68,6 @@ class WorkService {
 		formData.append("title", title);
 		formData.append("description", description);
 		formData.append("category", category);
-		formData.append("coverFile", coverFile);
 
 		for (let i = 0; i < artFiles.length; i++) {
 			const { file } = artFiles[i];

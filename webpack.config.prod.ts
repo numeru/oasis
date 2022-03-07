@@ -9,7 +9,7 @@ const ImageMinimizerPlugin = require("image-minimizer-webpack-plugin");
 const dotenv = require("dotenv");
 
 const getConfig = (isAnalyzeMode: boolean) => ({
-	name: "cromma",
+	name: "oasis",
 	mode: "production",
 	devtool: "hidden-source-map",
 	resolve: {

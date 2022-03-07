@@ -6,6 +6,9 @@ export default {
 	title: "Design System/Common/ConfirmModal",
 	component: ConfirmModal,
 	argTypes: { onConfirm: { action: "clicked" } },
+	parameters: {
+		componentSubtitle: "사용자의 확인 여부를 물을 때 사용합니다.",
+	},
 } as ComponentMeta<typeof ConfirmModal>;
 
 const Template: ComponentStory<typeof ConfirmModal> = (args) => <ConfirmModal {...args} />;

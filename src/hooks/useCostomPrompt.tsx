@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Prompt, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 type PromptLocation = {
 	hash: string;
@@ -10,8 +10,9 @@ type PromptLocation = {
 };
 
 type ReturnType = [
-	() => JSX.Element,
+	(promptLocation: PromptLocation) => boolean,
 	React.Dispatch<React.SetStateAction<boolean>>,
+	boolean,
 	React.Dispatch<React.SetStateAction<boolean>>,
 ];
 
@@ -28,20 +29,16 @@ const useCustomPrompt = (setShowAlertModal: React.Dispatch<React.SetStateAction<
 		}
 	}, [leavePage]);
 
-	const handlePrompt = (location: PromptLocation) => {
+	const handlePrompt = (promptLocation: PromptLocation) => {
 		if (!leavePage && isEdited) {
-			setNextLocation(location.pathname);
+			setNextLocation(promptLocation.pathname);
 			setShowAlertModal(true);
 			return false;
 		}
 		return true;
 	};
 
-	const showPrompt = () => {
-		return <Prompt when={true} message={handlePrompt} />;
-	};
-
-	return [showPrompt, setLeavePage, setIsEdited];
+	return [handlePrompt, setLeavePage, isEdited, setIsEdited];
 };
 
 export default useCustomPrompt;

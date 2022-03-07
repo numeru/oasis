@@ -3,18 +3,19 @@ import EditCancelAlertModal from "@components/features/edit-profile/cancel-alert
 import EditProfileForm from "@components/features/edit-profile/edit-profile-form";
 import Modal from "@components/shared/modal";
 import useCustomPrompt from "@hooks/useCostomPrompt";
+import { Prompt } from "react-router-dom";
 
 const EditProfile = () => {
 	const [showAlertModal, setShowAlertModal] = useState(false);
 
-	const [showPrompt, setLeavePage, setIsEdited] = useCustomPrompt(setShowAlertModal);
+	const [handlePrompt, setLeavePage, isEdited, setIsEdited] = useCustomPrompt(setShowAlertModal);
 
 	const [isFormSubmitted, setIsFormSubmitted] = useState(false);
 
 	return (
 		<>
 			<EditProfileForm setIsEdited={setIsEdited} isFormSubmitted={isFormSubmitted} />
-			{showPrompt()}
+			<Prompt when={isEdited} message={handlePrompt} />
 			{showAlertModal && (
 				<Modal>
 					<EditCancelAlertModal

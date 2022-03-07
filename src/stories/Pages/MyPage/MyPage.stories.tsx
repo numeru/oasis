@@ -13,6 +13,9 @@ export default {
 			</MemoryRouter>
 		),
 	],
+	parameters: {
+		componentSubtitle: "나와 관련된 정보를 볼 수 있는 페이지 입니다.",
+	},
 } as ComponentMeta<typeof MyPage>;
 
 const Template: ComponentStory<typeof MyPage> = (args) => <MyPage />;

@@ -18,7 +18,7 @@ type Props = {
 	showConfirmModal: () => void;
 };
 
-const InitializationPasswordForm = ({ showConfirmModal }: Props) => {
+const PasswordInitializationForm = ({ showConfirmModal }: Props) => {
 	const [email, handleEmail] = useInput("");
 
 	const [name, handleName] = useInput("");
@@ -58,4 +58,4 @@ const InitializationPasswordForm = ({ showConfirmModal }: Props) => {
 	);
 };
 
-export default InitializationPasswordForm;
+export default PasswordInitializationForm;

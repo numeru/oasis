@@ -13,6 +13,9 @@ export default {
 			</MemoryRouter>
 		),
 	],
+	parameters: {
+		componentSubtitle: "회원가입을 할 수 있는 페이지 입니다.",
+	},
 } as ComponentMeta<typeof SignUp>;
 
 const Template: ComponentStory<typeof SignUp> = (args) => <SignUp />;

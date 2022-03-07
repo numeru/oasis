@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import styled, { css } from "styled-components";
-import { FormConfirmButton } from "@components/shared/form-buttons/styled";
 
 type StyledProps = {
 	$imageRatio: boolean;
@@ -26,23 +25,19 @@ export const WorkDetailIntro = styled.section`
 `;
 
 export const WorkDetailDescription = styled.section`
-	& > div {
-		width: 100%;
-		padding: 3.4% 4% 3.4% 5%;
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
-	}
-
 	& > p {
 		margin: 0;
-		padding: 3.2% 5%;
+		padding: 5%;
 		font-size: 0.75rem;
 		line-height: 20px;
 	}
 `;
 
-export const WorkDetailUserInfo = styled(Link)`
+export const WorkWriterInfo = styled.section`
+	padding: 2%;
+`;
+
+export const WorkWriterLink = styled(Link)`
 	display: flex;
 	align-items: center;
 	font-size: 0.75rem;
@@ -50,13 +45,12 @@ export const WorkDetailUserInfo = styled(Link)`
 	color: black;
 	font-family: var(--font-nanum-bold);
 	width: 100%;
-	padding: 3.4% 4% 3.4% 5%;
 
-	& > div {
+	& > span {
 		margin-right: 10px;
-		width: 40px;
+		width: 30px;
 		height: 0;
-		padding-bottom: 40px;
+		padding-bottom: 30px;
 		overflow-y: hidden;
 		position: relative;
 		border-radius: 50%;
@@ -82,19 +76,57 @@ export const WorkDetailUserInfo = styled(Link)`
 `;
 
 export const WorkDetailImages = styled.section`
-	padding: 5% 1.5%;
+	padding: 1.5%;
 `;
 
 export const WorkDatailImage = styled.li`
-	margin-bottom: 5%;
+	&:not(:last-child) {
+		margin-bottom: 5%;
+	}
+
 	& > img {
 		width: 100%;
 		height: auto;
 	}
 `;
 
-export const WorkDeleteButton = styled(FormConfirmButton)`
-	width: 90.4%;
-	display: block;
-	margin: auto;
+export const WorkSubInfo = styled.section`
+	width: 100%;
+	padding: 4% 3%;
+`;
+
+export const WorkSubInfoToggleButton = styled.button`
+	display: flex;
+	align-items: stretch;
+	font-size: 1rem;
+	background-color: transparent;
+	font-family: var(--font-nanum-bold);
+	padding: 0;
+
+	& > img {
+		margin-left: 14px;
+		padding-bottom: 3px;
+	}
+`;
+
+export const WorkSubInfoTable = styled.table`
+	width: 100%;
+	margin-top: 2%;
+	table-layout: auto;
+
+	& > tbody {
+		& > tr {
+			height: 28px;
+
+			& > td:first-child {
+				color: var(--color-dark-gray);
+				font-size: 0.75rem;
+				font-family: var(--font-nanum-bold);
+			}
+			& > td:last-child {
+				font-size: 0.75rem;
+				font-family: var(--font-nanum-bold);
+			}
+		}
+	}
 `;

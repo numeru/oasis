@@ -21,7 +21,6 @@ const useGetAllMyWorks = (uuid: string): ReturnType => {
 	};
 
 	const { data: allMyWorksData, setSize } = useSWRInfinite(getKey, feedFetcher, {
-		dedupingInterval: DEDUPING_INTERVAL_TIME,
 		revalidateOnFocus: false,
 	});
 

@@ -32,6 +32,11 @@ const Header = () => {
 								</HeaderMenuButton>
 							</li>
 							<li>
+								<HeaderMenuButton activeClassName="selected" to="/project">
+									프로젝트
+								</HeaderMenuButton>
+							</li>
+							<li>
 								<HeaderMenuButton activeClassName="selected" to="/mypage">
 									아트로그
 								</HeaderMenuButton>
@@ -47,6 +52,11 @@ const Header = () => {
 							<li>
 								<HeaderMenuButton activeClassName="selected" exact to="/">
 									홈
+								</HeaderMenuButton>
+							</li>
+							<li>
+								<HeaderMenuButton activeClassName="selected" to="/project">
+									프로젝트
 								</HeaderMenuButton>
 							</li>
 							<li>

@@ -6,13 +6,14 @@ type StyledProps = {
 };
 
 export const WorksContainer = styled.section`
+	position: relative;
 	width: 100%;
 	height: 100%;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	padding: ${({ works }: StyledProps) => (works === 0 ? "48% 0 40% 0" : "4% 0")};
+	padding: ${({ works }: StyledProps) => (works === 0 ? "48% 0 40% 0" : "4% 0 20% 0")};
 `;
 
 export const GuideMessage = styled.p`
@@ -21,13 +22,9 @@ export const GuideMessage = styled.p`
 `;
 
 export const UploadWorkButton = styled(Link)`
-	background-color: var(--color-blue);
-	color: var(--color-white);
-	padding: ${({ works }: StyledProps) => (works === 0 ? "12.5px 41px" : "12.5px 29.3%")};
-	border-radius: 8px;
-	font-size: 0.75rem;
-	${({ works }: StyledProps) => (works === 0 ? "" : "margin-bottom: 6%")};
-	font-family: var(--font-nanum-bold);
+	position: absolute;
+	bottom: 0;
+	right: 0;
 `;
 
 export const UploadedMyWorks = styled.ul`

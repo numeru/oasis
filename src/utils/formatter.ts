@@ -25,3 +25,12 @@ export const minTypeFormatter = (image: DeviceImage, type?: string, minType?: st
 
 	return minImage;
 };
+
+export const uriLinkFormatter = (text: string | undefined) => {
+	if (!text) return "";
+
+	const uriRegExp =
+		/(?:https?:\/\/|www\.)(?:\([-A-Z0-9+&@#/%=~_|$?!:,.]*\)|[-A-Z0-9+&@#/%=~_|$?!:,.])*(?:\([-A-Z0-9+&@#/%=~_|$?!:,.]*\)|[A-Z0-9+&@#/%=~_|$])/gim;
+
+	return text.replace(uriRegExp, '<a href="$&" target="_blank" rel="noopener noreferrer">$&</a>');
+};

@@ -5,4 +5,4 @@ export const delay = (ms: number) => new Promise((res) => setTimeout(res, ms));
 
 export function* rootSaga() {
 	yield all([fork(userSaga)]);
-}
+} //generator 함수를 사용해서 rootSaga 정의

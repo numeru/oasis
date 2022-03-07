@@ -38,11 +38,8 @@ export const apiWithInterceptor = () => {
 					const accessToken = getStorageItem(storageAccessKey);
 					const tokenType = getStorageItem(storageTokenType);
 
-					if (config.headers) {
-						config.headers["Authorization"] = `${tokenType} ${accessToken}`;
-
-						return axios(config);
-					}
+					config.headers["Authorization"] = `${tokenType} ${accessToken}`;
+					return axios(config);
 				}
 			}
 			return response;
@@ -52,7 +49,7 @@ export const apiWithInterceptor = () => {
 				config,
 				response: { status },
 			} = error;
-			if (status >= 400 && status < RESPONSE_STATUS_500) {
+			if (status >= RESPONSE_STATUS_400 && status < RESPONSE_STATUS_500) {
 				const result = await authService.getNewToken();
 
 				if (result) {
@@ -70,7 +67,7 @@ export const apiWithInterceptor = () => {
 
 	return base;
 };
-
+//브랜치
 async function checkUserRequest() {
 	const {
 		auth: { check },

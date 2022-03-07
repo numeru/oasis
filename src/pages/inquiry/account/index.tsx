@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import InitializationPasswordForm from "@components/features/inquiry-account/initialization-password-form";
+import PasswordInitializationForm from "@components/features/inquiry-account/password-initialization-form";
 import styled from "styled-components";
 import ConfirmModal from "@components/shared/confirm-modal";
 import { useHistory } from "react-router-dom";
@@ -47,7 +47,7 @@ const AccoutInquiry = () => {
 				</AccountInquiryHeader>
 				<h3>회원가입하신 이메일과 이름을 입력해주세요</h3>
 
-				<InitializationPasswordForm showConfirmModal={showConfirmModal} />
+				<PasswordInitializationForm showConfirmModal={showConfirmModal} />
 			</AccountInquiryContainer>
 			{isConfirmModalVisible && (
 				<ConfirmModal

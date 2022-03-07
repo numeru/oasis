@@ -2,11 +2,12 @@ import React, { useState } from "react";
 import UploadWorkForm from "@components/features/upload-work/upload-work-form";
 import useCustomPrompt from "@hooks/useCostomPrompt";
 import AlertModal from "@components/shared/alert-modal";
+import { Prompt } from "react-router-dom";
 
 const UploadWork = () => {
 	const [showAlertModal, setShowAlertModal] = useState(false);
 
-	const [showPrompt, setLeavePage, setIsEdited] = useCustomPrompt(setShowAlertModal);
+	const [handlePrompt, setLeavePage, isEdited, setIsEdited] = useCustomPrompt(setShowAlertModal);
 
 	const handleClickConfirmButton = () => {
 		setLeavePage(true);
@@ -19,7 +20,7 @@ const UploadWork = () => {
 	return (
 		<>
 			<UploadWorkForm setIsEdited={setIsEdited} />
-			{showPrompt()}
+			<Prompt when={isEdited} message={handlePrompt} />
 			{showAlertModal && (
 				<AlertModal
 					content="정말로 페이지를 나가시겠어요?"

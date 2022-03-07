@@ -14,7 +14,7 @@ const FeedList = () => {
 			<h2>아트 스토리</h2>
 			<WorkCategories selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory} />
 			{allFeeds.length === 0 ? (
-				<EmptyGuideArea>아직 등록된 작업물이 없어요</EmptyGuideArea>
+				<EmptyGuideArea>아직 등록된 프로젝트가 없어요</EmptyGuideArea>
 			) : (
 				<>
 					<FeedListWrapper>

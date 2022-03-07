@@ -9,6 +9,9 @@ export default {
 	title: "Design System/Pages/MyPage/Likes",
 	component: Likes,
 	decorators: [withMock],
+	parameters: {
+		componentSubtitle: "하트를 준 유저들을 보여주는 페이지 입니다.",
+	},
 } as ComponentMeta<typeof Likes>;
 
 const Template: ComponentStory<typeof Likes> = (args) => <Likes />;

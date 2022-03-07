@@ -2,15 +2,18 @@ import { configureStore } from "@reduxjs/toolkit";
 import { userSlice } from "@stores/slices/user-slice";
 import createSagaMiddleware from "redux-saga";
 import { rootSaga } from "./sagas/root";
-
+import UISlice from "./slices/ui-slice";
+//sagamiddleware를 적용한다
 const sagaMiddleware = createSagaMiddleware();
 
 const createStore = () => {
 	const store = configureStore({
 		reducer: {
 			user: userSlice.reducer,
+			ui: UISlice.reducer,
 		},
 		middleware: [sagaMiddleware],
+		devTools: process.env.NODE_ENV === "production" ? false : true,
 	});
 	sagaMiddleware.run(rootSaga);
 
@@ -24,3 +27,4 @@ export default store;
 type RootState = ReturnType<typeof store.getState>;
 
 export const selectUser = (state: RootState) => state.user;
+export const selectUI = (state: RootState) => state.ui;

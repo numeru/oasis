@@ -33,7 +33,7 @@ type InitialState = {
 	createDt: string;
 	updateDt: string;
 	ableUpdate: boolean;
-};
+}; //초기 타입지정
 
 const initialState: InitialState = {
 	isLogin: false,
@@ -62,8 +62,7 @@ const initialState: InitialState = {
 	createDt: "",
 	updateDt: "",
 	ableUpdate: false,
-};
-
+}; //초기 상태 인스턴스 생성
 export const userSlice = createSlice({
 	name: "user",
 	initialState,

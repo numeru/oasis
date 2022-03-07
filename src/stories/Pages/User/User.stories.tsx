@@ -10,6 +10,9 @@ export default {
 	title: "Design System/Pages/User",
 	component: User,
 	decorators: [withMock],
+	parameters: {
+		componentSubtitle: "선택한 사용자의 정보를 볼 수 있는 페이지 입니다.",
+	},
 } as ComponentMeta<typeof User>;
 
 const Template: ComponentStory<typeof User> = (args) => <User />;

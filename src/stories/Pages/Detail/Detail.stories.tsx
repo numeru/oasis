@@ -10,6 +10,9 @@ export default {
 	title: "Design System/Pages/Detail",
 	component: Detail,
 	decorators: [withMock],
+	parameters: {
+		componentSubtitle: "프로젝트를 클릭했을 때 보여주는 상세 페이지 입니다.",
+	},
 } as ComponentMeta<typeof Detail>;
 
 const Template: ComponentStory<typeof Detail> = (args) => <Detail />;

@@ -11,19 +11,24 @@ export const categories = [
 	},
 	{
 		id: "2",
+		name: "문예창작",
+		query: "NONE",
+	},
+	{
+		id: "3",
 		name: "음악",
 		query: "MUSIC",
 	},
 	{
-		id: "3",
+		id: "4",
 		name: "무용",
 		query: "DANCE",
 	},
 	{
-		id: "4",
+		id: "5",
 		name: "연극영화",
 		query: "THEATRE_FILM",
 	},
 ];
 
-export const uploadCategories = categories.slice(1, 5);
+export const uploadCategories = categories.slice(1);

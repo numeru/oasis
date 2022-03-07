@@ -21,6 +21,7 @@ export const FooterOptionButton = styled.button`
 	padding: 0;
 	text-decoration: underline;
 	color: black;
+	background-color: transparent;
 `;
 
 export const FooterCompanyInfo = styled.address`
@@ -37,6 +38,7 @@ export const FooterCompanyInfo = styled.address`
 			cursor: pointer;
 			color: #848484;
 			font-size: 0.75rem;
+			background-color: transparent;
 
 			& > img {
 				margin: 4% 2% 4% 0;

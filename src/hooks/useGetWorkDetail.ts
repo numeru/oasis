@@ -1,13 +1,19 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useMemo } from "react";
 import useSWRImmutable from "swr/immutable";
 import { Feed, UploadedImage } from "@utils/types";
 import { feedFetcher } from "@utils/fetcher";
 import API_URL, { API_HOST } from "@apis/api";
 import { useHistory } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { selectUser } from "@stores/store";
 
 type WorkDetail = Feed & { artFiles: UploadedImage[] };
 
-const useGetWorkDetail = (workId: string) => {
+type ReturnTypes = [WorkDetail | undefined, boolean];
+
+const useGetWorkDetail = (workId: string): ReturnTypes => {
+	const { uuid } = useSelector(selectUser);
+
 	const {
 		feed: { basic, detail },
 	} = API_URL;
@@ -25,7 +31,9 @@ const useGetWorkDetail = (workId: string) => {
 		}
 	}, [error]);
 
-	return workDetailData;
+	const isMine = useMemo(() => workDetailData?.userUuid === uuid, [workDetailData, uuid]);
+
+	return [workDetailData, isMine];
 };
 
 export default useGetWorkDetail;
