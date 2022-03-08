@@ -38,7 +38,6 @@ client
     |   └── layout                   # 페이지를 둘러싸는 공통 레이아웃
     |   └── shared                   # 공통 컴포넌트 라이브러리
     |   └── features                 # 페이지를 구성하는 컴포넌트
-    |       └── tests                # 컴포넌트 테스트
     |       └── index.tsx            
     |       └── styled.ts            # 컴포넌트에 사용되는 styled-components
     |
