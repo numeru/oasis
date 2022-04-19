@@ -1,6 +1,6 @@
-import Bannerx1 from "@assets/images/home/oasis_banner.png";
-import Bannerx2 from "@assets/images/home/oasis_banner@2x.png";
-import Bannerx3 from "@assets/images/home/oasis_banner@3x.png";
+import Bannerx1 from "assets/images/home/oasis_banner.png";
+import Bannerx2 from "assets/images/home/oasis_banner@2x.png";
+import Bannerx3 from "assets/images/home/oasis_banner@3x.png";
 
 export type DeviceImage = {
 	x1: string;

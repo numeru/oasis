@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import { Route, Switch } from "react-router-dom";
 import styled from "styled-components";
-import SignUpForm from "@components/features/sign-up/sign-up-form";
-import { SignUpHeader } from "@components/features/sign-up/sign-up-form/styled";
-import EmailCertification from "@pages/sign-up/email-certification";
-import SignUpFormService from "@services/signup_form_service";
+import SignUpForm from "components/features/sign-up/sign-up-form";
+import { SignUpHeader } from "components/features/sign-up/sign-up-form/styled";
+import EmailCertification from "pages/sign-up/email-certification";
+import SignUpFormService from "services/signup_form_service";
 
 const SignUpContainer = styled.main`
 	width: 100%;

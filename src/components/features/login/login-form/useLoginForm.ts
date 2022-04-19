@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import AuthService from "@apis/auth/auth-service";
+import AuthService from "apis/auth/auth-service";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { responseErrorWarning, userLogin } from "@stores/slices/user-slice";
-import { BASIC_ERROR_MESSAGE, RESPONSE_STATUS_200, RESPONSE_STATUS_400 } from "@constants/api";
+import { responseErrorWarning, userLogin } from "stores/slices/user-slice";
+import { BASIC_ERROR_MESSAGE, RESPONSE_STATUS_200, RESPONSE_STATUS_400 } from "constants/api";
 
 const authService = new AuthService();
 
@@ -32,13 +32,10 @@ const useLoginForm = (email: string, password: string): ReturnType => {
 		};
 
 		try {
-			const {
-				statusCode,
-				data: { message },
-			} = await authService.login(data);
+			const statusCode = await authService.login(data);
 
 			if (statusCode >= RESPONSE_STATUS_400) {
-				dispatch(responseErrorWarning(message || BASIC_ERROR_MESSAGE));
+				dispatch(responseErrorWarning(BASIC_ERROR_MESSAGE));
 				return;
 			}
 

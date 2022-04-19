@@ -1,5 +1,5 @@
 import React from "react";
-import Modal from "@components/shared/modal";
+import Modal from "components/shared/modal";
 import { AlertButtonList, AlertModalConatiner } from "./styled";
 
 type Props = {

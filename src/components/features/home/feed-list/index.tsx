@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import UploadedWorkCard from "@components/shared/uploaded-work-card";
-import WorkCategories from "@components/shared/work-categories";
+import UploadedWorkCard from "components/shared/uploaded-work-card";
+import WorkCategories from "components/shared/work-categories";
 import { EmptyGuideArea, FeedListContainer, FeedListWrapper, FeedMoreButton } from "./styled";
-import useGetAllFeedList from "@hooks/useGetAllFeedList";
+import useGetAllFeedList from "components/features/home/feed-list/useGetAllFeedList";
 
 const FeedList = () => {
 	const [selectedCategory, setSelectedCategory] = useState("ALL");
@@ -18,11 +18,11 @@ const FeedList = () => {
 			) : (
 				<>
 					<FeedListWrapper>
-						{allFeeds?.map(({ uuid, title, coverFile, profileImage, userName }) => (
+						{allFeeds?.map(({ uuid, title, coverFile, user: { profileImage, userName } }) => (
 							<li key={uuid}>
 								<UploadedWorkCard
 									id={uuid}
-									coverFile={coverFile.path}
+									coverFile={coverFile?.path}
 									title={title}
 									profileImage={profileImage}
 									userName={userName}

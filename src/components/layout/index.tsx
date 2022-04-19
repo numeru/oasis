@@ -1,6 +1,6 @@
 import React, { ReactNode } from "react";
-import Leftside from "@components/layout/left-side";
-import RightSide from "@components/layout/right-side";
+import Leftside from "components/layout/left-side";
+import RightSide from "components/layout/right-side";
 import styled from "styled-components";
 
 const LayoutContainer = styled.div`

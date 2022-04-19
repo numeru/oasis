@@ -1,5 +1,5 @@
 import React from "react";
-import ChangePasswordForm from "@components/features/change-password/change-password-form";
+import ChangePasswordForm from "components/features/change-password/change-password-form";
 import styled from "styled-components";
 
 const ChangePasswordContainer = styled.main`

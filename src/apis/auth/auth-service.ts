@@ -7,11 +7,11 @@ import {
 	storageAccessExp,
 	storageRefreshExp,
 	storageTokenType,
-} from "@utils/local-storage";
+} from "utils/local-storage";
 import axios, { AxiosInstance } from "axios";
-import API_URL, { API_HOST, BasicResult } from "@apis/api";
-import { LoginRequest, SignUpRequest, LoginResult } from "@apis/auth/types";
-import { TOKEN_ERROR } from "@constants/errors";
+import API_URL, { API_HOST, BasicResult } from "apis/api";
+import { LoginRequest, SignUpRequest, LoginResult } from "apis/auth/types";
+import { TOKEN_ERROR } from "constants/errors";
 
 export interface IAuthService {
 	setAuthHeader(): {
@@ -48,9 +48,10 @@ class AuthService implements IAuthService {
 
 		const response = await this.base.post(login, data);
 		const result: LoginResult = await response.data;
+		const statusCode = response.status;
 
 		const {
-			data: { accessToken, refreshToken, expiresIn, refreshExpiresIn, tokenType },
+			token: { accessToken, refreshToken, expiresIn, refreshExpiresIn, tokenType },
 		} = result;
 
 		setStorageItem(storageAccessKey, accessToken);
@@ -59,7 +60,7 @@ class AuthService implements IAuthService {
 		setStorageItem(storageRefreshExp, refreshExpiresIn);
 		setStorageItem(storageTokenType, tokenType);
 
-		return result;
+		return statusCode;
 	}
 
 	async getNewToken() {
@@ -84,7 +85,7 @@ class AuthService implements IAuthService {
 			const result: LoginResult = await response.data;
 
 			const {
-				data: { accessToken, refreshToken, expiresIn, refreshExpiresIn, tokenType },
+				token: { accessToken, refreshToken, expiresIn, refreshExpiresIn, tokenType },
 			} = result;
 
 			setStorageItem(storageAccessKey, accessToken);

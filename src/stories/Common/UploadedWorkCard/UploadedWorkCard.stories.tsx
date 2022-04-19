@@ -1,8 +1,8 @@
 import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import UploadedWorkCard from "@components/shared/uploaded-work-card";
-import DummyCoverImage from "@assets/images/dummy/dummy_image_1.png";
-import DummyProfileImage from "@assets/images/dummy/dummy_image_1.png";
+import UploadedWorkCard from "components/shared/uploaded-work-card";
+import DummyCoverImage from "assets/images/dummy/dummy_image_1.png";
+import DummyProfileImage from "assets/images/dummy/dummy_image_1.png";
 
 export default {
 	title: "Design System/Common/UploadedWorkCard",

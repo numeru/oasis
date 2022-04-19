@@ -1,13 +1,14 @@
 import React, { useEffect, useMemo, useState } from "react";
-import { BASIC_ERROR_MESSAGE } from "@constants/api";
+import { USER_UNIVERSITY_VERIFICATION } from "./../../../../constants/user";
+import { BASIC_ERROR_MESSAGE } from "constants/api";
 import { useDispatch, useSelector } from "react-redux";
-import { responseErrorWarning } from "@stores/slices/user-slice";
-import { selectUser } from "@stores/store";
+import { responseErrorWarning } from "stores/slices/user-slice";
+import { selectUser } from "stores/store";
 import useSWR from "swr";
-import API_URL, { API_HOST } from "@apis/api";
-import { profileFetcher } from "@utils/fetcher";
-import UserService from "@apis/user/user-service";
-import { Profile } from "@utils/types";
+import API_URL, { API_HOST } from "apis/api";
+import { profileFetcher } from "utils/fetcher";
+import UserService from "apis/user/user-service";
+import { Profile } from "utils/types";
 
 const userService = new UserService();
 
@@ -58,7 +59,7 @@ const useGetUserInfo = (userId: string): ReturnType => {
 	};
 
 	const isUniversityVerified = useMemo(
-		() => profileData?.universityVerify === "VERIFICATION",
+		() => profileData?.universityVerify === USER_UNIVERSITY_VERIFICATION,
 
 		[profileData],
 	);

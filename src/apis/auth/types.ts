@@ -1,4 +1,4 @@
-import { ApiResult } from "@apis/api";
+import { ApiResult } from "apis/api";
 
 export type SignUpRequest = {
 	emailId: string;
@@ -14,14 +14,17 @@ export type LoginRequest = {
 	password: string;
 };
 
-export type LoginResult = ApiResult<{
-	accessToken: string;
-	expiresIn: string;
-	refreshToken: string;
-	refreshExpiresIn: string;
-	tokenType: string;
-	message: string;
-}>;
+export type LoginResult = {
+	token: {
+		accessToken: string;
+		expiresIn: string;
+		refreshToken: string;
+		refreshExpiresIn: string;
+		tokenType: string;
+		message: string;
+	};
+	user: UserData;
+};
 
 export type UserData = {
 	uuid: string;
@@ -42,7 +45,8 @@ export type UserData = {
 	updateDt: string;
 	ableUpdate: boolean;
 };
-export type CheckUserResult = ApiResult<{
+export type CheckUserResult = {
+	message: string;
+	status: string;
 	user: UserData | null;
-	status: boolean;
-}>;
+};

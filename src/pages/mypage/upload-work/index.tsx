@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import UploadWorkForm from "@components/features/upload-work/upload-work-form";
-import useCustomPrompt from "@hooks/useCostomPrompt";
-import AlertModal from "@components/shared/alert-modal";
+import UploadWorkForm from "components/features/upload-work/upload-work-form";
+import useCustomPrompt from "hooks/useCostomPrompt";
+import AlertModal from "components/shared/alert-modal";
 import { Prompt } from "react-router-dom";
 
 const UploadWork = () => {

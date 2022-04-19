@@ -1,9 +1,9 @@
 import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import Likes from "@pages/mypage/likes";
+import Likes from "pages/mypage/likes";
 import withMock from "storybook-addon-mock";
-import { API_HOST } from "@apis/api";
-import DummyProfileImage from "@assets/images/dummy/dummy_image_2.png";
+import { API_HOST } from "apis/api";
+import DummyProfileImage from "assets/images/dummy/dummy_image_2.png";
 
 export default {
 	title: "Design System/Pages/MyPage/Likes",

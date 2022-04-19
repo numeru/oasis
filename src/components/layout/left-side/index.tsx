@@ -1,5 +1,5 @@
 import React from "react";
-import LargeLogo from "@assets/images/layout/oasis_logo_large.svg";
+import LargeLogo from "assets/images/layout/oasis_logo_large.svg";
 
 import { LeftContainer, LeftLogo, LeftTitle, LeftDescription } from "./styled";
 

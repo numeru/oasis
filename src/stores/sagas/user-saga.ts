@@ -1,5 +1,5 @@
-import AuthService from "@apis/auth/auth-service";
-import API_URL, { API_HOST } from "@apis/api";
+import AuthService from "apis/auth/auth-service";
+import API_URL, { API_HOST } from "apis/api";
 import axios, { AxiosResponse } from "axios";
 import { all, fork, put, takeLatest, call } from "redux-saga/effects";
 import {
@@ -14,12 +14,12 @@ import {
 	endTokenError,
 	responseSuccessGuide,
 	responseSuccessDone,
-} from "@stores/slices/user-slice";
-import { delay } from "@stores/sagas/root";
-import { getStorageItem, storageAccessKey, storageTokenType } from "@utils/local-storage";
-import { CheckUserResult } from "@apis/auth/types";
-import { RESPONSE_STATUS_200, RESPONSE_STATUS_400, RESPONSE_STATUS_500 } from "@constants/api";
-import { ALERT_TIME_OUT } from "@constants/alert";
+} from "stores/slices/user-slice";
+import { delay } from "stores/sagas/root";
+import { getStorageItem, storageAccessKey, storageTokenType } from "utils/local-storage";
+import { CheckUserResult } from "apis/auth/types";
+import { RESPONSE_STATUS_200, RESPONSE_STATUS_400, RESPONSE_STATUS_500 } from "constants/api";
+import { ALERT_TIME_OUT } from "constants/alert";
 
 const authService = new AuthService();
 
@@ -67,7 +67,7 @@ export const apiWithInterceptor = () => {
 
 	return base;
 };
-//브랜치
+
 async function checkUserRequest() {
 	const {
 		auth: { check },
@@ -109,12 +109,9 @@ function* handleCheckUser() {
 		const response: AxiosResponse<CheckUserResult> = yield call(checkUserRequest);
 		const result = response.data;
 
-		const {
-			statusCode,
-			data: { user },
-		} = result;
+		const { status, user } = result;
 
-		if (statusCode === RESPONSE_STATUS_200 && user) {
+		if (status === "OK" && user) {
 			yield put(setUserData(user));
 		}
 		yield put(checkUserDone());

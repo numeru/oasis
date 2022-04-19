@@ -4,12 +4,12 @@ import { MdChevronRight } from "react-icons/md";
 import { Redirect } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { AboutUser, LogoutButton, SettingsContainer, SettingsMenus } from "./styled";
-import SchoolCertification from "@pages/settings/school-certification";
+import SchoolCertification from "pages/settings/school-certification";
 import { Route, Switch } from "react-router-dom";
-import { selectUser } from "@stores/store";
+import { selectUser } from "stores/store";
 import CertificationResult from "./school-certification/result";
 import ChangePassword from "./change-password";
-import useLogout from "@hooks/useLogout";
+import useLogout from "pages/settings/useLogout";
 
 const Settings = () => {
 	const { isLogin, userName, emailId } = useSelector(selectUser);

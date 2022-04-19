@@ -1,5 +1,5 @@
 import React from "react";
-import SmallLogo from "@assets/images/layout/oasis_logo_small.svg";
+import SmallLogo from "assets/images/layout/oasis_logo_small.svg";
 import {
 	LayoutHeader,
 	HeaderLogoTitle,
@@ -10,7 +10,7 @@ import {
 	HeaderNavMenu,
 } from "./styled";
 import { useSelector } from "react-redux";
-import { selectUser } from "@stores/store";
+import { selectUser } from "stores/store";
 
 const Header = () => {
 	const userSelector = useSelector(selectUser);

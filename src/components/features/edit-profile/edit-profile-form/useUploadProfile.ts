@@ -1,11 +1,11 @@
 import React from "react";
-import UserService from "@apis/user/user-service";
+import UserService from "apis/user/user-service";
 import { useHistory } from "react-router-dom";
-import { checkUserStart, responseErrorWarning, responseSuccessGuide, throwTokenError } from "@stores/slices/user-slice";
-import { TOKEN_ERROR } from "@constants/errors";
-import { BASIC_ERROR_MESSAGE, RESPONSE_STATUS_200, RESPONSE_STATUS_400 } from "@constants/api";
+import { checkUserStart, responseErrorWarning, responseSuccessGuide, throwTokenError } from "stores/slices/user-slice";
+import { TOKEN_ERROR } from "constants/errors";
+import { BASIC_ERROR_MESSAGE, RESPONSE_STATUS_200, RESPONSE_STATUS_400 } from "constants/api";
 import { useDispatch } from "react-redux";
-import { UserUploadFile } from "@utils/types";
+import { UserUploadFile } from "utils/types";
 
 const userService = new UserService();
 

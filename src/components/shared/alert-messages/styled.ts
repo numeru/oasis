@@ -28,6 +28,10 @@ export const AlertSuccessModal = styled(AlertSuccessMessage)`
 	@media screen and (max-width: 1200px) {
 		padding: 12px 20px;
 	}
+
+	@media screen and (max-width: 768px) {
+		max-width: 90%;
+	}
 `;
 
 export const AlertFailModal = styled(AlertFailMessage)`
@@ -40,5 +44,10 @@ export const AlertFailModal = styled(AlertFailMessage)`
 
 	@media screen and (max-width: 1200px) {
 		padding: 12px 20px;
+	}
+
+	@media screen and (max-width: 768px) {
+		white-space: pre-wrap;
+		max-width: 90%;
 	}
 `;

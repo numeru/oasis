@@ -1,8 +1,8 @@
 import React from "react";
 import LazyLoad from "react-lazyload";
 import { WorkCardContainer, WorkCardImage, WorkCardInfo, WorkCardTitle, WorkCardUserInfo } from "./styled";
-import UserProfileBlank from "@assets/images/mypage/user_profile_blank.svg";
-import useImageSize from "@hooks/useImageSize";
+import UserProfileBlank from "assets/images/mypage/user_profile_blank.svg";
+import useImageSize from "hooks/useImageSize";
 
 type Props = {
 	id: string;

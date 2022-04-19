@@ -1,6 +1,6 @@
 import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import EditProfile from "@pages/mypage/edit-profile";
+import EditProfile from "pages/mypage/edit-profile";
 
 export default {
 	title: "Design System/Pages/MyPage/EditProfile",

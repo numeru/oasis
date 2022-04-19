@@ -1,8 +1,8 @@
 import React from "react";
-import UploadedWorkCard from "@components/shared/uploaded-work-card";
-import { EmptyGuideBox } from "@components/shared/empty-guide-box/styled";
-import { UploadedMyWorks, WorksContainer, WorksMoreButton } from "@components/features/mypage/my-works/styled";
-import useGetUserWorks from "@hooks/useGetUserWorks";
+import UploadedWorkCard from "components/shared/uploaded-work-card";
+import { EmptyGuideBox } from "components/shared/empty-guide-box/styled";
+import { UploadedMyWorks, WorksContainer, WorksMoreButton } from "components/features/mypage/my-works/styled";
+import useGetUserWorks from "components/features/user/user-works/useGetUserWorks";
 
 type Props = {
 	userId: string;
@@ -21,7 +21,7 @@ const UserWorks = ({ userId }: Props) => {
 			) : (
 				<>
 					<UploadedMyWorks>
-						{allUserWorks?.map(({ uuid, coverFile, title, profileImage, userName }) => (
+						{allUserWorks?.map(({ uuid, coverFile, title, user: { profileImage, userName } }) => (
 							<li key={uuid}>
 								<UploadedWorkCard
 									id={uuid}

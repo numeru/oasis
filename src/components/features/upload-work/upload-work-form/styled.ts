@@ -1,7 +1,10 @@
-import styled from "styled-components";
-import { FormConfirmButton } from "@components/shared/form-buttons/styled";
-import { AlertFailMessage } from "@components/shared/alert-messages/styled";
-import ArrowDownIcon from "@assets/images/mypage/arrow_down_icon.svg";
+import styled, { css } from "styled-components";
+import { AlertFailMessage } from "components/shared/alert-messages/styled";
+import ArrowDownIcon from "assets/images/mypage/arrow_down_icon.svg";
+
+type StyledProps = {
+	selected: boolean;
+};
 
 export const UploadForm = styled.form`
 	width: 100%;
@@ -156,4 +159,76 @@ export const WorkSelectInput = styled.select`
 	background-image: url(${ArrowDownIcon});
 	background-repeat: no-repeat;
 	background-position: right 4% center;
+`;
+
+export const CopyrightOptionList = styled.ul`
+	padding-left: 13px;
+`;
+
+export const CopyrightOptionItem = styled.li`
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	margin-bottom: 12px;
+	position: relative;
+
+	& > input[type="radio"] {
+		width: 24px;
+		height: 24px;
+		margin: 0 12px 0 0;
+		border: 1px solid #363636;
+		border-radius: 4px;
+		appearance: none;
+
+		&:checked {
+			background-color: white;
+			color: black;
+		}
+	}
+
+	& > label {
+		line-height: 18px;
+	}
+
+	& > img {
+		position: absolute;
+		left: 5px;
+		top: 7px;
+	}
+`;
+
+export const CopyrightSubOptionList = styled.ul`
+	width: 100%;
+	padding-left: 36px;
+	margin-top: 22px;
+`;
+
+export const CopyrightSubOptionButtonList = styled.ul`
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	margin: 15px 0 22px 0;
+
+	& > li {
+		margin-bottom: 8px;
+	}
+
+	& > li:not(:last-child) {
+		margin-right: 20px;
+	}
+`;
+
+export const CopyrightSubOptionButton = styled.button`
+	background: rgba(183, 183, 183, 0.1);
+	border: 0.5px solid #848484;
+	border-radius: 16px;
+	padding: 7px 19px;
+	white-space: nowrap;
+
+	${({ selected }: StyledProps) =>
+		selected &&
+		css`
+			background: rgba(2, 101, 249, 0.1);
+			border: 0.5px solid #0265f9;
+		`}
 `;

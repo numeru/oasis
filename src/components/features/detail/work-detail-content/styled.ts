@@ -5,15 +5,24 @@ type StyledProps = {
 	$imageRatio: boolean;
 };
 export const WorkDetailIntro = styled.section`
-	& > time {
-		color: var(--color-dark-gray);
+	& > span {
+		display: inline-block;
+		padding: 8px 19px;
+		white-space: nowrap;
+		margin-bottom: 14px;
+		margin-left: 1.5%;
+		border-radius: 20px;
 		font-size: 0.875rem;
+		font-family: var(--font-nanum-bold);
+		border: 1px solid var(--color-blue);
+		color: var(--color-blue);
+		background-color: rgba(2, 101, 249, 0.1);
 	}
 
 	& > h2 {
 		font-size: 1.5rem;
 		padding: 0 1.5%;
-		margin: 2.9% 0 3.9% 0;
+		margin: 0 0 3.9% 0;
 		font-family: var(--font-nanum-bold);
 	}
 
@@ -122,10 +131,19 @@ export const WorkSubInfoTable = styled.table`
 				color: var(--color-dark-gray);
 				font-size: 0.75rem;
 				font-family: var(--font-nanum-bold);
+				white-space: nowrap;
 			}
 			& > td:last-child {
 				font-size: 0.75rem;
 				font-family: var(--font-nanum-bold);
+				padding-left: 12px;
+
+				& > span {
+					font-size: 0.75rem;
+					font-family: var(--font-nanum-bold);
+					margin-right: 13px;
+					white-space: nowrap;
+				}
 			}
 		}
 	}

@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 
 import { SignUpButton, SignUpCancelButton, SignUpFormCheckBox, SignUpFormContainer } from "./styled";
-import { AlertFailModal } from "@components/shared/alert-messages/styled";
-import useSignUpFormValidation from "@hooks/useSignUpFormValidation";
-import SignUpFormService from "@services/signup_form_service";
-import FormItem from "@components/shared/form-item";
+import { AlertFailModal } from "components/shared/alert-messages/styled";
+import useSignUpFormValidation from "components/features/sign-up/sign-up-form/useSignUpFormValidation";
+import SignUpFormService from "services/signup_form_service";
+import FormItem from "components/shared/form-item";
 
 type Props = {
 	signUpFormService: SignUpFormService;

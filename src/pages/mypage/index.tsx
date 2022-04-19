@@ -1,10 +1,10 @@
 import React from "react";
 import styled from "styled-components";
-import MyInfo from "@components/features/mypage/my-info";
-import MyWorks from "@components/features/mypage/my-works";
+import MyInfo from "components/features/mypage/my-info";
+import MyWorks from "components/features/mypage/my-works";
 import { Redirect, Route, Switch } from "react-router-dom";
-import EditProfile from "@pages/mypage/edit-profile";
-import UploadWork from "@pages/mypage/upload-work";
+import EditProfile from "pages/mypage/edit-profile";
+import UploadWork from "pages/mypage/upload-work";
 import Likes from "./likes";
 
 const MyPageContainer = styled.main`

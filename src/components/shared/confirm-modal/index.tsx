@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import Modal from "@components/shared/modal";
+import Modal from "components/shared/modal";
 
 const ConfirmModalConatiner = styled.dialog`
 	width: 100%;

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import PasswordInitializationForm from "@components/features/inquiry-account/password-initialization-form";
+import PasswordInitializationForm from "components/features/inquiry-account/password-initialization-form";
 import styled from "styled-components";
-import ConfirmModal from "@components/shared/confirm-modal";
+import ConfirmModal from "components/shared/confirm-modal";
 import { useHistory } from "react-router-dom";
 
 const AccountInquiryContainer = styled.main`

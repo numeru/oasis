@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import WorkService from "@apis/work/work-service";
-import { TOKEN_ERROR } from "@constants/errors";
-import { BASIC_ERROR_MESSAGE, RESPONSE_STATUS_200, RESPONSE_STATUS_400 } from "@constants/api";
+import WorkService from "apis/work/work-service";
+import { TOKEN_ERROR } from "constants/errors";
+import { BASIC_ERROR_MESSAGE, RESPONSE_STATUS_201, RESPONSE_STATUS_400 } from "constants/api";
 import { useHistory } from "react-router-dom";
-import { responseErrorWarning, throwTokenError } from "@stores/slices/user-slice";
+import { responseErrorWarning, throwTokenError } from "stores/slices/user-slice";
 import { useDispatch } from "react-redux";
-import { WorkImage } from "@utils/types";
+import { CommercialCopyright, ModifyCopyright, WorkImage } from "utils/types";
 
 const workService = new WorkService();
 
@@ -15,6 +15,7 @@ type BlankUploadFormInputs = {
 	description: boolean;
 	workImages: boolean;
 	tags: boolean;
+	copyright: boolean;
 };
 
 type UploadFormInputs = {
@@ -23,12 +24,26 @@ type UploadFormInputs = {
 	description: string;
 	workImages: WorkImage[];
 	tags: string;
+	collaborators: string;
+	copyright: string;
+	commercialCopyright: CommercialCopyright;
+	modifyCopyright: ModifyCopyright;
 };
 
 type ReturnType = [BlankUploadFormInputs, boolean, (e: React.FormEvent<HTMLFormElement>) => Promise<void>];
 
 const useUploadWorkForm = (
-	{ selectedCategory, title, description, workImages, tags }: UploadFormInputs,
+	{
+		selectedCategory,
+		title,
+		description,
+		workImages,
+		tags,
+		collaborators,
+		copyright,
+		commercialCopyright,
+		modifyCopyright,
+	}: UploadFormInputs,
 	setIsEdited: React.Dispatch<React.SetStateAction<boolean>>,
 ): ReturnType => {
 	const [blankInputs, setBlankInputs] = useState<BlankUploadFormInputs>({
@@ -37,6 +52,7 @@ const useUploadWorkForm = (
 		description: false,
 		workImages: false,
 		tags: false,
+		copyright: false,
 	});
 
 	const findBlanklInputs = () => {
@@ -46,14 +62,29 @@ const useUploadWorkForm = (
 			description: description === "",
 			workImages: workImages.length === 0,
 			tags: tags === "",
+			copyright: copyright === "",
 		});
 
-		return selectedCategory === "" || title === "" || description === "" || workImages.length === 0 || tags === "";
+		return (
+			selectedCategory === "" ||
+			title === "" ||
+			description === "" ||
+			workImages.length === 0 ||
+			tags === "" ||
+			copyright === ""
+		);
 	};
 
 	useEffect(() => {
-		setIsEdited(selectedCategory !== "" || title !== "" || description !== "" || workImages.length > 0 || tags !== "");
-	}, [selectedCategory, title, description, workImages, tags]);
+		setIsEdited(
+			selectedCategory !== "" ||
+				title !== "" ||
+				description !== "" ||
+				workImages.length > 0 ||
+				tags !== "" ||
+				copyright !== "",
+		);
+	}, [selectedCategory, title, description, workImages, tags, copyright]);
 
 	const [isFormSubmitted, setIsFormSubmitted] = useState(false);
 
@@ -74,19 +105,21 @@ const useUploadWorkForm = (
 				title,
 				description,
 				category: selectedCategory,
-				artFiles: workImages,
+				tags,
+				collaborators,
+				copyright,
+				commercialCopyright,
+				modifyCopyright,
+				workImages,
 			};
 
-			const {
-				statusCode,
-				data: { message },
-			} = await workService.uploadWork(data);
+			const statusCode = await workService.uploadWork(data);
 
 			if (statusCode >= RESPONSE_STATUS_400) {
-				dispatch(responseErrorWarning(message || BASIC_ERROR_MESSAGE));
+				dispatch(responseErrorWarning(BASIC_ERROR_MESSAGE));
 			}
 
-			if (statusCode == RESPONSE_STATUS_200) {
+			if (statusCode == RESPONSE_STATUS_201) {
 				setIsEdited(false);
 				history.replace("/mypage");
 			}

@@ -1,6 +1,6 @@
 import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import FormItem from "@components/shared/form-item";
+import FormItem from "components/shared/form-item";
 
 export default {
 	title: "Design System/Common/FormItem",

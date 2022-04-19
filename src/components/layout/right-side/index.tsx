@@ -2,11 +2,11 @@ import React, { ReactNode } from "react";
 import Footer from "./footer";
 import Header from "./header";
 import styled from "styled-components";
-import { AlertFailModal, AlertSuccessModal } from "@components/shared/alert-messages/styled";
+import { AlertFailModal, AlertSuccessModal } from "components/shared/alert-messages/styled";
 import { useSelector } from "react-redux";
-import { selectUI, selectUser } from "@stores/store";
-import { LoadingIndicator, LoadingIndicatorContainer } from "@components/shared/loading-indicator";
-import Loadingindicator from "@assets/images/loadingIndicator/loading_indicator.png";
+import { selectUI, selectUser } from "stores/store";
+import { LoadingIndicator, LoadingIndicatorContainer } from "components/shared/loading-indicator";
+import Loadingindicator from "assets/images/loadingIndicator/loading_indicator.png";
 import SubHeader from "./sub-header";
 
 const RightContainer = styled.div`

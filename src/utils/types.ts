@@ -32,6 +32,22 @@ export type Feed = {
 	ableDelete: boolean;
 };
 
+export type UserSummary = {
+	userUuid: string;
+	userName: string;
+	profileImage: string;
+};
+
+export type HomeFeed = {
+	user: UserSummary;
+	uuid: string;
+	title: string;
+	coverFile: UploadedImage;
+	createDate: string;
+	updateDate: string;
+	ableDelete: boolean;
+};
+
 export type WorkImage = {
 	id: number;
 	file: File;
@@ -53,3 +69,8 @@ export type Profile = {
 	hasHeart: boolean;
 	ableUpdate: boolean;
 };
+
+export type CommercialCopyright = "COMMERCIAL" | "NONE_COMMERCIAL";
+export type ModifyCopyright = "ALLOW" | "NOT_ALLOW" | "DERIVED_FROM_SAME_CONDITION_ALLOW";
+
+export type Categories = "ALL" | "ART" | "CREATIVE_WRITING" | "MUSIC" | "DANCE" | "THEATRE_FILM";

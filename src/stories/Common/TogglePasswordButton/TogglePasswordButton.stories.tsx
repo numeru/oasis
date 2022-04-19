@@ -1,6 +1,6 @@
 import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import TogglePasswordButton from "@components/shared/toggle-password-button";
+import TogglePasswordButton from "components/shared/toggle-password-button";
 
 export default {
 	title: "Design System/Common/TogglePasswordButton",

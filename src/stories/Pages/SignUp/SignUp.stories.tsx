@@ -1,6 +1,6 @@
 import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import SignUp from "@pages/sign-up";
+import SignUp from "pages/sign-up";
 import { MemoryRouter } from "react-router-dom";
 
 export default {

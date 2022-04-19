@@ -1,8 +1,8 @@
 import React from "react";
 import { Route, Redirect } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { selectUser } from "@stores/store";
-import { responseErrorWarning } from "@stores/slices/user-slice";
+import { selectUser } from "stores/store";
+import { responseErrorWarning } from "stores/slices/user-slice";
 
 type Props = {
 	exact?: boolean | undefined;

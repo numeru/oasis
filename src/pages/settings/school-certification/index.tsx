@@ -1,10 +1,11 @@
 import React from "react";
-import SchoolCertificationForm from "@components/features/school-certification/school-certification-form";
+import SchoolCertificationForm from "components/features/school-certification/school-certification-form";
 import { Redirect } from "react-router-dom";
-import ExampleschoolIdCard from "@assets/images/school-certification/school_id_example.png";
+import ExampleschoolIdCard from "assets/images/school-certification/school_id_example.png";
 import { useSelector } from "react-redux";
-import { selectUser } from "@stores/store";
+import { selectUser } from "stores/store";
 import { SchoolCertificationContainer, SchoolCertificationExampleImage, SchoolCertificationHeader } from "./styled";
+import { USER_UNIVERSITY_NO_VERIFICATION } from "constants/user";
 
 const SchoolCertification = () => {
 	const userSelector = useSelector(selectUser);
@@ -14,7 +15,7 @@ const SchoolCertification = () => {
 		return <Redirect to="/login" />;
 	}
 
-	if (universityVerify !== "NO_VERIFICATION") {
+	if (universityVerify !== USER_UNIVERSITY_NO_VERIFICATION) {
 		return <Redirect to="/settings/certification/result" />;
 	}
 

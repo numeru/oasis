@@ -1,6 +1,6 @@
 import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import SchoolCertification from "@pages/settings/school-certification";
+import SchoolCertification from "pages/settings/school-certification";
 
 export default {
 	title: "Design System/Pages/Settings/SchoolCertification",

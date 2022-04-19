@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { EmptyGuideBox } from "@components/shared/empty-guide-box/styled";
+import { EmptyGuideBox } from "components/shared/empty-guide-box/styled";
 
 export const FeedListContainer = styled.section`
 	width: 100%;

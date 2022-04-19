@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { FormCancelButton, FormConfirmButton } from "@components/shared/form-buttons/styled";
+import { FormCancelButton, FormConfirmButton } from "components/shared/form-buttons/styled";
 
 export const SignUpHeader = styled.header`
 	width: 100%;

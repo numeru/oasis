@@ -1,8 +1,8 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { userLogout } from "@stores/slices/user-slice";
-import AuthService from "@apis/auth/auth-service";
+import { userLogout } from "stores/slices/user-slice";
+import AuthService from "apis/auth/auth-service";
 
 const authService = new AuthService();
 

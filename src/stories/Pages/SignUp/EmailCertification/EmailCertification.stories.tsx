@@ -1,6 +1,6 @@
 import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import EmailCertification from "@pages/sign-up/email-certification";
+import EmailCertification from "pages/sign-up/email-certification";
 
 export default {
 	title: "Design System/Pages/SignUp/EmailCertification",

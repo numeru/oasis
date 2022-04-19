@@ -1,8 +1,8 @@
-export const storageAccessKey = "OASIS_STORAGE_ACCESS_KEY";
-export const storageRefreshKey = "OASIS_STORAGE_REFRESH_KEY";
-export const storageAccessExp = "OASIS_STORAGE_ACCESS_TOKEN_EXP";
-export const storageRefreshExp = "OASIS_STORAGE_ACCESS_TOKEN_EXP";
-export const storageTokenType = "OASIS_STORAGE_TOKEN_TYPE";
+export const storageAccessKey = "";
+export const storageRefreshKey = "";
+export const storageAccessExp = "";
+export const storageRefreshExp = "";
+export const storageTokenType = "";
 
 export const getStorageItem = (key: string, initialValue = "") => {
 	try {

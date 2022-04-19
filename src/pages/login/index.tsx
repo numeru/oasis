@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import LoginForm from "@components/features/login/login-form";
-import { FindAccountButton, LoginHeader } from "@components/features/login/login-form/styled";
+import LoginForm from "components/features/login/login-form";
+import { FindAccountButton, LoginHeader } from "components/features/login/login-form/styled";
 
 const LoginContainer = styled.main`
 	width: 100%;

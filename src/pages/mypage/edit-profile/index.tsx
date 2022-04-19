@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import EditCancelAlertModal from "@components/features/edit-profile/cancel-alert-modal";
-import EditProfileForm from "@components/features/edit-profile/edit-profile-form";
-import Modal from "@components/shared/modal";
-import useCustomPrompt from "@hooks/useCostomPrompt";
+import EditCancelAlertModal from "components/features/edit-profile/cancel-alert-modal";
+import EditProfileForm from "components/features/edit-profile/edit-profile-form";
+import Modal from "components/shared/modal";
+import useCustomPrompt from "hooks/useCostomPrompt";
 import { Prompt } from "react-router-dom";
 
 const EditProfile = () => {

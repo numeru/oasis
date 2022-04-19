@@ -1,19 +1,19 @@
 import React, { lazy, Suspense, useEffect } from "react";
 import { Redirect, Route, Switch, useHistory } from "react-router-dom";
-import OasisLayout from "@components/layout";
+import OasisLayout from "components/layout";
 import { useDispatch, useSelector } from "react-redux";
-import { checkUserStart, responseErrorWarning, userLogout } from "@stores/slices/user-slice";
-import { selectUser } from "@stores/store";
-import LoginRequiredRoute from "@utils/login-required-route";
+import { checkUserStart, responseErrorWarning, userLogout } from "stores/slices/user-slice";
+import { selectUser } from "stores/store";
+import LoginRequiredRoute from "utils/login-required-route";
 
-const Home = lazy(() => import("@pages/home"));
-const Login = lazy(() => import("@pages/login"));
-const MyPage = lazy(() => import("@pages/mypage"));
-const SignUp = lazy(() => import("@pages/sign-up"));
-const Settings = lazy(() => import("@pages/settings"));
-const User = lazy(() => import("@pages/user"));
-const WorkDetail = lazy(() => import("@pages/detail"));
-const AccountInquiry = lazy(() => import("@pages/inquiry/account"));
+const Home = lazy(() => import("pages/home"));
+const Login = lazy(() => import("pages/login"));
+const MyPage = lazy(() => import("pages/mypage"));
+const SignUp = lazy(() => import("pages/sign-up"));
+const Settings = lazy(() => import("pages/settings"));
+const User = lazy(() => import("pages/user"));
+const WorkDetail = lazy(() => import("pages/detail"));
+const AccountInquiry = lazy(() => import("pages/inquiry/account"));
 
 function App() {
 	const dispatch = useDispatch();

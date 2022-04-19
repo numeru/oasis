@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import useInput from "@hooks/useInput";
+import useInput from "hooks/useInput";
 import { CertificationCancelButton, CompleteSignUpButton, CertificationForm, ResendButton } from "./styled";
 import { useHistory, useLocation } from "react-router-dom";
-import useCompleteSignUpForm from "@hooks/useCompleteSignUpForm";
-import { FormAlertMessage, FormInput, FormLabel } from "@components/shared/form-item/styled";
-import SignUpFormService from "@services/signup_form_service";
+import useCompleteSignUpForm from "components/features/email-certification/certification-form/useCompleteSignUpForm";
+import { FormAlertMessage, FormInput, FormLabel } from "components/shared/form-item/styled";
+import SignUpFormService from "services/signup_form_service";
 type Location = {
 	from_signup?: boolean;
 };

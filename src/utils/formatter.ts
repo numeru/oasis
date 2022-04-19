@@ -1,8 +1,7 @@
-import { DeviceImage } from "@assets/device-images";
+import { DeviceImage } from "assets/device-images";
 
-export const dateFormatter = (date: string | undefined) => date?.slice(0, 10).replace(/-/gi, ".");
-
-export const dateTimeFormatter = (date: string | undefined) => date?.slice(0, 10);
+export const dateFormatter = (date: string | undefined, replacement?: string) =>
+	date ? (replacement ? date.slice(0, 10).replace(/-/gi, replacement) : date.slice(0, 10)) : "";
 
 export const imageTypeFormatter = (path: string) => path.slice(0, 5);
 

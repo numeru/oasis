@@ -1,12 +1,12 @@
 import React, { useEffect, useMemo, useState } from "react";
 import useSWRInfinite from "swr/infinite";
-import API_URL, { API_HOST } from "@apis/api";
-import { usersFetcher } from "@utils/fetcher";
-import { TOKEN_ERROR } from "@constants/errors";
+import API_URL, { API_HOST } from "apis/api";
+import { usersFetcher } from "utils/fetcher";
+import { TOKEN_ERROR } from "constants/errors";
 import { useDispatch } from "react-redux";
-import { throwTokenError } from "@stores/slices/user-slice";
-import { Profile } from "@utils/types";
-import { AMOUNT_OF_DATA_AT_ONCE, DEDUPING_INTERVAL_TIME, RETRY_COUNT_LIMIT } from "@constants/swr";
+import { throwTokenError } from "stores/slices/user-slice";
+import { Profile } from "utils/types";
+import { AMOUNT_OF_DATA_AT_ONCE, DEDUPING_INTERVAL_TIME, RETRY_COUNT_LIMIT } from "constants/swr";
 
 const useGetAllHeartUsers = () => {
 	const {
@@ -18,7 +18,7 @@ const useGetAllHeartUsers = () => {
 
 	const getKey = (index: number, previousPageData: Profile[] | null) => {
 		if (previousPageData && !previousPageData.length) return null;
-		return `${API_HOST}${heart}/search?page=${index + 1}&pageSize=${limit}`;
+		return `${API_HOST}${heart}/search?page=${index}&pageSize=${limit}`;
 	};
 
 	const dispatch = useDispatch();

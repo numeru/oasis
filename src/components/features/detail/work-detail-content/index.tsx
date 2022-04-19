@@ -10,21 +10,22 @@ import {
 	WorkSubInfoToggleButton,
 	WorkSubInfoTable,
 } from "./styled";
-import UserProfileBlank from "@assets/images/mypage/user_profile_blank.svg";
-import useImageSize from "@hooks/useImageSize";
-import useGetWorkDetail from "@hooks/useGetWorkDetail";
-import AlertModal from "@components/shared/alert-modal";
-import useDeleteWork from "@hooks/useDeleteWork";
-import { dateFormatter, dateTimeFormatter } from "@utils/formatter";
-import ArrowUpIcon from "@assets/images/detail/arrow_up.svg";
-import useChangeHeader from "@hooks/useChangeHeader";
+import UserProfileBlank from "assets/images/mypage/user_profile_blank.svg";
+import useImageSize from "hooks/useImageSize";
+import useGetWorkDetail from "components/features/detail/work-detail-content/useGetWorkDetail";
+import AlertModal from "components/shared/alert-modal";
+import useDeleteWork from "components/features/detail/work-detail-content/useDeleteWork";
+import { dateFormatter } from "utils/formatter";
+import ArrowUpIcon from "assets/images/detail/arrow_up.svg";
+import useChangeHeader from "hooks/useChangeHeader";
+import { CATEGORIES } from "constants/categories";
 
 type Props = {
 	workId: string;
 };
 
 const WorkDetailContent = ({ workId }: Props) => {
-	const [workDetailData, isMine] = useGetWorkDetail(workId);
+	const [workDetailData, isMine, cclInstruction] = useGetWorkDetail(workId);
 
 	const [showDeleteModal, setShowDeleteModal] = useState(false);
 
@@ -42,7 +43,7 @@ const WorkDetailContent = ({ workId }: Props) => {
 		isMine,
 	);
 
-	const imageRatio = useImageSize(workDetailData?.profileImage);
+	const imageRatio = useImageSize(workDetailData?.user.profileImage);
 
 	const handleDeleteWork = useDeleteWork(workId);
 
@@ -59,11 +60,9 @@ const WorkDetailContent = ({ workId }: Props) => {
 	return (
 		<article>
 			<WorkDetailIntro aria-labelledby="work_detail_intro_label">
-				<time dateTime={dateTimeFormatter(workDetailData?.createDate)}>
-					{dateFormatter(workDetailData?.createDate)}
-				</time>
+				<span>{workDetailData && CATEGORIES[workDetailData.category]}</span>
 				<h2 id="work_detail_intro_label">{workDetailData?.title}</h2>
-				<img src={workDetailData?.coverFile.path} alt="프로젝트 커버 이미지" />
+				<img src={workDetailData?.artFiles[0]?.path} alt="프로젝트 커버 이미지" />
 			</WorkDetailIntro>
 
 			<WorkDetailDescription aria-labelledby="work_detail_description_label">
@@ -81,7 +80,7 @@ const WorkDetailContent = ({ workId }: Props) => {
 				<ul>
 					{workDetailData?.artFiles.map((image) => (
 						<WorkDatailImage key={image.uuid}>
-							<img src={image.path} alt="프로젝트 상세 이미지" />
+							<img src={image?.path} alt="프로젝트 상세 이미지" />
 						</WorkDatailImage>
 					))}
 				</ul>
@@ -92,12 +91,12 @@ const WorkDetailContent = ({ workId }: Props) => {
 					작성자 설명
 				</h3>
 
-				<WorkWriterLink to={`/user/${workDetailData?.userUuid}`} $imageRatio={imageRatio}>
+				<WorkWriterLink to={`/user/${workDetailData?.user.userUuid}`} $imageRatio={imageRatio}>
 					<span>
-						<img src={workDetailData?.profileImage || UserProfileBlank} alt="" />
+						<img src={workDetailData?.user.profileImage || UserProfileBlank} alt="" />
 					</span>
 
-					{workDetailData?.userName}
+					{workDetailData?.user.userName}
 				</WorkWriterLink>
 			</WorkWriterInfo>
 
@@ -113,19 +112,27 @@ const WorkDetailContent = ({ workId }: Props) => {
 						<tbody>
 							<tr>
 								<td>등록일</td>
-								<td>2022/02/02</td>
+								<td>{dateFormatter(workDetailData?.createDate, "/")}</td>
 							</tr>
 							<tr>
 								<td>태그</td>
-								<td>#무용학과</td>
+								<td>
+									{workDetailData?.tags?.map((tag, idx) => (
+										<span key={idx}>{tag}</span>
+									))}
+								</td>
 							</tr>
 							<tr>
 								<td>함께한 친구</td>
-								<td>김현지</td>
+								<td>{workDetailData?.collaborators}</td>
 							</tr>
 							<tr>
 								<td>저작권</td>
-								<td>저작권 표시 - 비영리 - 변경금지</td>
+								<td>
+									{cclInstruction?.map((ccl, idx) => (
+										<span key={idx}>{ccl}</span>
+									))}
+								</td>
 							</tr>
 						</tbody>
 					</WorkSubInfoTable>

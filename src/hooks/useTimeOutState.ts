@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { ALERT_TIME_OUT } from "@constants/alert";
+import { ALERT_TIME_OUT } from "constants/alert";
 
 type ReturnTypes = [boolean, React.Dispatch<React.SetStateAction<boolean>>];
 

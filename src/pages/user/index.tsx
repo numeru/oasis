@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import UserInfo from "@components/features/user/user-info";
-import UserWorks from "@components/features/user/user-works";
+import UserInfo from "components/features/user/user-info";
+import UserWorks from "components/features/user/user-works";
 import { Redirect, useParams } from "react-router-dom";
 import styled from "styled-components";
 import { useSelector } from "react-redux";
-import { selectUser } from "@stores/store";
+import { selectUser } from "stores/store";
 
 const UserPageContainer = styled.main`
 	width: 100%;

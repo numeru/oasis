@@ -1,23 +1,30 @@
 import React, { useState } from "react";
-import { InvisibleFileInput } from "@components/shared/invisible-file-input/styled";
-import useInput from "@hooks/useInput";
-import WorkCategories from "@components/shared/work-categories";
+import { InvisibleFileInput } from "components/shared/invisible-file-input/styled";
+import useInput from "hooks/useInput";
+import WorkCategories from "components/shared/work-categories";
 import {
 	FillBlankInstructions,
 	UploadForm,
 	UploadGuide,
 	UploadInputField,
 	UploadInputTitle,
-	WorkSelectInput,
 	UploadWorkTextArea,
 	UploadWorkInput,
+	CopyrightOptionList,
+	CopyrightOptionItem,
+	CopyrightSubOptionList,
+	CopyrightSubOptionButtonList,
+	CopyrightSubOptionButton,
 } from "./styled";
-import useUploadWorkForm from "@hooks/useUploadWorkForm";
-import useUploadWorkImages from "@hooks/useUploadWorkImages";
-import UploadedWorkImages from "@components/features/upload-work/uploaded-work-images";
-import ConfirmModal from "@components/shared/confirm-modal";
-import AlertModal from "@components/shared/alert-modal";
-import useChangeHeader from "@hooks/useChangeHeader";
+import useUploadWorkForm from "components/features/upload-work/upload-work-form/useUploadWorkForm";
+import useUploadWorkImages from "components/features/upload-work/upload-work-form/useUploadWorkImages";
+import UploadedWorkImages from "components/features/upload-work/uploaded-work-images";
+import ConfirmModal from "components/shared/confirm-modal";
+import AlertModal from "components/shared/alert-modal";
+import useChangeHeader from "hooks/useChangeHeader";
+import CheckIcon from "assets/images/mypage/check_icon.svg";
+import { CommercialCopyright, ModifyCopyright } from "utils/types";
+import { ALLOW, COMMERCIAL, DERIVED_FROM_SAME_CONDITION_ALLOW, NONE_COMMERCIAL, NOT_ALLOW } from "constants/copyright";
 
 type Props = {
 	setIsEdited: React.Dispatch<React.SetStateAction<boolean>>;
@@ -28,8 +35,10 @@ const UploadWorkForm = ({ setIsEdited }: Props) => {
 	const [title, handleTitle] = useInput("");
 	const [description, handleDescription] = useInput("");
 	const [tags, handleTags] = useInput("");
-	const [friends, handleFriends] = useInput("");
-	const [copyright, handleCopyright] = useInput("저작자표시");
+	const [collaborators, handleCollaborators] = useInput("");
+	const [copyright, handleCopyright] = useInput("");
+	const [commercialCopyright, setCommercialCopyright] = useState<CommercialCopyright>(COMMERCIAL);
+	const [modifyCopyright, setModifyCopyright] = useState<ModifyCopyright>(ALLOW);
 
 	const [
 		workImages,
@@ -51,7 +60,17 @@ const UploadWorkForm = ({ setIsEdited }: Props) => {
 	};
 
 	const [blankInputs, isFormSubmitted, submitUploadWorkForm] = useUploadWorkForm(
-		{ selectedCategory, title, description, workImages, tags },
+		{
+			selectedCategory,
+			title,
+			description,
+			workImages,
+			tags,
+			collaborators,
+			copyright,
+			commercialCopyright,
+			modifyCopyright,
+		},
 		setIsEdited,
 	);
 
@@ -74,7 +93,7 @@ const UploadWorkForm = ({ setIsEdited }: Props) => {
 
 	return (
 		<>
-			<UploadForm onSubmit={submitUploadWorkForm}>
+			<UploadForm>
 				<h2>새 포트폴리오 등록</h2>
 
 				<ul>
@@ -179,22 +198,104 @@ const UploadWorkForm = ({ setIsEdited }: Props) => {
 					<UploadWorkInput
 						id="upload_friends"
 						placeholder="함께한 친구가 있다면 멘션해주세요"
-						value={friends}
-						onChange={handleFriends}
+						value={collaborators}
+						onChange={handleCollaborators}
 					/>
 				</UploadInputField>
 
 				<UploadInputField>
-					<label htmlFor="upload_copyright">저작권</label>
-					<WorkSelectInput name="copyright" id="upload_copyright" value={copyright} onChange={handleCopyright}>
-						<option value="저작자표시">저작자표시</option>
-						<option value="저작자표시-비영리">저작자표시-비영리</option>
-						<option value="저작자표시-변경금지">저작자표시-변경금지</option>
-						<option value="저작자표시-동일조건변경허락">저작자표시-동일조건변경허락</option>
-						<option value="저작자표시-비영리-동일조건변경허락">저작자표시-비영리-동일조건변경허락</option>
-						<option value="저작자표시-비영리-변경금지">저작자표시-비영리-변경금지</option>
-						<option value="저작자표시 안 함">저작자표시 안 함</option>
-					</WorkSelectInput>
+					<UploadInputTitle>CCL 표시*</UploadInputTitle>
+					{blankInputs.copyright && (
+						<FillBlankInstructions id="upload_ccl_error_message" role="alert">
+							CCL 표시를 선택해주세요
+						</FillBlankInstructions>
+					)}
+					<CopyrightOptionList>
+						<CopyrightOptionItem>
+							<input
+								type="radio"
+								id="upload_copyright_hide"
+								name="copyright"
+								value="hide"
+								checked={copyright === "hide"}
+								onChange={handleCopyright}
+							/>
+							<label htmlFor="upload_copyright_hide">표시 안 함</label>
+							{copyright === "hide" && <img src={CheckIcon} alt="" />}
+						</CopyrightOptionItem>
+						<CopyrightOptionItem>
+							<input
+								type="radio"
+								id="upload_copyright_show"
+								name="copyright"
+								value="show"
+								checked={copyright === "show"}
+								onChange={handleCopyright}
+							/>
+							<label htmlFor="upload_copyright_show">저작자 표시</label>
+							{copyright === "show" && <img src={CheckIcon} alt="" />}
+
+							{copyright === "show" && (
+								<CopyrightSubOptionList>
+									<li>
+										상업적 이용
+										<CopyrightSubOptionButtonList>
+											<li>
+												<CopyrightSubOptionButton
+													type="button"
+													selected={commercialCopyright === COMMERCIAL}
+													onClick={() => setCommercialCopyright(COMMERCIAL)}
+												>
+													허용
+												</CopyrightSubOptionButton>
+											</li>
+											<li>
+												<CopyrightSubOptionButton
+													type="button"
+													selected={commercialCopyright === NONE_COMMERCIAL}
+													onClick={() => setCommercialCopyright(NONE_COMMERCIAL)}
+												>
+													금지
+												</CopyrightSubOptionButton>
+											</li>
+										</CopyrightSubOptionButtonList>
+									</li>
+									<li>
+										저작물 변경
+										<CopyrightSubOptionButtonList>
+											<li>
+												<CopyrightSubOptionButton
+													type="button"
+													selected={modifyCopyright === ALLOW}
+													onClick={() => setModifyCopyright(ALLOW)}
+												>
+													허용
+												</CopyrightSubOptionButton>
+											</li>
+											<li>
+												<CopyrightSubOptionButton
+													type="button"
+													selected={modifyCopyright === DERIVED_FROM_SAME_CONDITION_ALLOW}
+													onClick={() => setModifyCopyright(DERIVED_FROM_SAME_CONDITION_ALLOW)}
+												>
+													동일한 이용 조건
+												</CopyrightSubOptionButton>
+											</li>
+											<li>
+												<CopyrightSubOptionButton
+													type="button"
+													selected={modifyCopyright === NOT_ALLOW}
+													onClick={() => setModifyCopyright(NOT_ALLOW)}
+												>
+													금지
+												</CopyrightSubOptionButton>
+											</li>
+										</CopyrightSubOptionButtonList>
+									</li>
+								</CopyrightSubOptionList>
+							)}
+						</CopyrightOptionItem>
+					</CopyrightOptionList>
 				</UploadInputField>
 			</UploadForm>
 

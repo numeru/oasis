@@ -1,5 +1,5 @@
 import React, { ReactNode } from "react";
-import { ModalContainer, ModalCard } from "@components/shared/modal/styled";
+import { ModalContainer, ModalCard } from "components/shared/modal/styled";
 
 type Props = {
 	dark?: boolean;

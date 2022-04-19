@@ -1,10 +1,10 @@
 import React from "react";
-import UploadedWorkCard from "@components/shared/uploaded-work-card";
+import UploadedWorkCard from "components/shared/uploaded-work-card";
 import { useSelector } from "react-redux";
-import { selectUser } from "@stores/store";
+import { selectUser } from "stores/store";
 import { GuideMessage, UploadedMyWorks, UploadWorkButton, WorksContainer, WorksMoreButton } from "./styled";
-import useGetAllMyWorks from "@hooks/useGetAllMyWorks";
-import PlusAddButton from "@assets/images/mypage/plus_add_button.svg";
+import useGetAllMyWorks from "components/features/mypage/my-works/useGetAllMyWorks";
+import PlusAddButton from "assets/images/mypage/plus_add_button.svg";
 
 const MyWorks = () => {
 	const userSelector = useSelector(selectUser);
@@ -30,7 +30,7 @@ const MyWorks = () => {
 						<img src={PlusAddButton} alt="새 프로젝트 등록" />
 					</UploadWorkButton>
 					<UploadedMyWorks>
-						{allMyWorks?.map(({ uuid, coverFile, title, profileImage, userName }) => (
+						{allMyWorks?.map(({ uuid, coverFile, title, user: { profileImage, userName } }) => (
 							<li key={uuid}>
 								<UploadedWorkCard
 									id={uuid}

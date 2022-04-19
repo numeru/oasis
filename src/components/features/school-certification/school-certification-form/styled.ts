@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { FormConfirmButton } from "@components/shared/form-buttons/styled";
+import { FormConfirmButton } from "components/shared/form-buttons/styled";
 
 type StyledProps = {
 	empty: boolean;

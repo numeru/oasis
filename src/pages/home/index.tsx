@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
-import FeedList from "@components/features/home/feed-list";
-import { Banner } from "@assets/device-images";
+import FeedList from "components/features/home/feed-list";
+import { Banner } from "assets/device-images";
 import { useHistory, useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { responseSuccessGuide } from "@stores/slices/user-slice";
+import { responseSuccessGuide } from "stores/slices/user-slice";
 import { HomeBanner, HomeContainer } from "./styled";
-import Picture from "@components/shared/picture";
+import Picture from "components/shared/picture";
 
 type Location = {
 	signup_success?: boolean;

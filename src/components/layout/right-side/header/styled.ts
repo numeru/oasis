@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 export const LayoutHeader = styled.header`
 	width: 100%;
-	padding: 2.8% 1%;
+	padding: 2.8% 1% 2.8% 4.8%;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
@@ -16,11 +16,22 @@ export const HeaderLogoTitle = styled.h1`
 	font-family: var(--font-nanum-bold);
 	height: 30px;
 	line-height: 33px;
+
+	@media screen and (max-width: 320px) {
+		font-size: 1.3rem;
+		height: 26px;
+		line-height: 28px;
+	}
 `;
 
 export const HeaderLogoImage = styled.img`
 	width: 30px;
 	height: 30px;
+
+	@media screen and (max-width: 320px) {
+		width: 26px;
+		height: 26px;
+	}
 `;
 
 export const HeaderLogo = styled(Link)`
@@ -40,6 +51,12 @@ export const HeaderMenuList = styled.ul`
 	& > li {
 		margin: 0 4.2%;
 	}
+
+	@media screen and (max-width: 320px) {
+		& > li {
+			margin: 0 3.1%;
+		}
+	}
 `;
 
 export const HeaderMenuButton = styled(NavLink)`
@@ -47,6 +64,7 @@ export const HeaderMenuButton = styled(NavLink)`
 	background-color: transparent;
 	color: var(--color-dark-gray);
 	font-family: var(--font-nanum-bold);
+	white-space: nowrap;
 
 	&.selected {
 		text-decoration: underline;

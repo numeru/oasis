@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
-import WorkDetailContent from "@components/features/detail/work-detail-content";
+import WorkDetailContent from "components/features/detail/work-detail-content";
 
 const DetailContainer = styled.main`
 	width: 100%;

@@ -1,8 +1,13 @@
-import { WorkImage } from "@utils/types";
+import { CommercialCopyright, ModifyCopyright, WorkImage } from "utils/types";
 
 export type UploadWorkRequest = {
 	title: string;
 	description: string;
+	workImages: WorkImage[];
 	category: string;
-	artFiles: WorkImage[];
+	tags: string;
+	collaborators: string;
+	copyright: string;
+	commercialCopyright: CommercialCopyright;
+	modifyCopyright: ModifyCopyright;
 };

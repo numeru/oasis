@@ -1,6 +1,6 @@
 import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import Login from "@pages/login";
+import Login from "pages/login";
 
 export default {
 	title: "Design System/Pages/Login",

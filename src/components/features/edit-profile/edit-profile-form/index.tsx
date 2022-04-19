@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
-import UserProfileBlank from "@assets/images/mypage/user_profile_blank.svg";
-import useInput from "@hooks/useInput";
+import UserProfileBlank from "assets/images/mypage/user_profile_blank.svg";
+import useInput from "hooks/useInput";
 import {
 	ChangeImageButton,
 	UserIntroductionInput,
@@ -8,16 +8,16 @@ import {
 	UploadedProfileImage,
 	SaveProfileButton,
 } from "./styled";
-import useTextLimit from "@hooks/useTextLimit";
-import { FormCancelButton } from "@components/shared/form-buttons/styled";
-import { CountLetters } from "@components/shared/count-letters/styled";
-import { InvisibleFileInput } from "@components/shared/invisible-file-input/styled";
+import useTextLimit from "hooks/useTextLimit";
+import { FormCancelButton } from "components/shared/form-buttons/styled";
+import { CountLetters } from "components/shared/count-letters/styled";
+import { InvisibleFileInput } from "components/shared/invisible-file-input/styled";
 import { useSelector } from "react-redux";
-import { selectUser } from "@stores/store";
-import { UserUploadFile } from "@utils/types";
-import { INTRODUCTION_LETTERS_LIMIT } from "@constants/letters";
-import useUploadProfile from "@hooks/useUploadProfile";
-import { imageTypeFormatter } from "@utils/formatter";
+import { selectUser } from "stores/store";
+import { UserUploadFile } from "utils/types";
+import { INTRODUCTION_LETTERS_LIMIT } from "constants/letters";
+import useUploadProfile from "components/features/edit-profile/edit-profile-form/useUploadProfile";
+import { imageTypeFormatter } from "utils/formatter";
 
 type Props = {
 	setIsEdited: React.Dispatch<React.SetStateAction<boolean>>;

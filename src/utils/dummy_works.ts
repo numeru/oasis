@@ -1,5 +1,5 @@
-import DummyWorkImage from "@assets/images/dummy/dummy_image_1.png";
-import DummyUserImage from "@assets/images/dummy/dummy_image_2.png";
+import DummyWorkImage from "assets/images/dummy/dummy_image_1.png";
+import DummyUserImage from "assets/images/dummy/dummy_image_2.png";
 
 type DummyWork = {
 	uuid: string;

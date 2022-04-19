@@ -1,5 +1,5 @@
 import React from "react";
-import { DeviceImage } from "@assets/device-images";
+import { DeviceImage } from "assets/device-images";
 
 type Props = {
 	type: string;

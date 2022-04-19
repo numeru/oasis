@@ -1,9 +1,9 @@
 import React from "react";
-import FormItem from "@components/shared/form-item";
-import useInput from "@hooks/useInput";
+import FormItem from "components/shared/form-item";
+import useInput from "hooks/useInput";
 import styled from "styled-components";
-import { FormConfirmButton } from "@components/shared/form-buttons/styled";
-import useInitPassword from "@hooks/useInitPassword";
+import { FormConfirmButton } from "components/shared/form-buttons/styled";
+import useInitPassword from "components/features/inquiry-account/password-initialization-form/useInitPassword";
 
 const InitializationFormContainer = styled.form`
 	width: 100%;

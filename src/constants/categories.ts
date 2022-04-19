@@ -12,7 +12,7 @@ export const categories = [
 	{
 		id: "2",
 		name: "문예창작",
-		query: "NONE",
+		query: "CREATIVE_WRITING",
 	},
 	{
 		id: "3",
@@ -32,3 +32,12 @@ export const categories = [
 ];
 
 export const uploadCategories = categories.slice(1);
+
+export const CATEGORIES = {
+	ALL: "전체",
+	ART: "미술",
+	CREATIVE_WRITING: "문예창작",
+	MUSIC: "음악",
+	DANCE: "무용",
+	THEATRE_FILM: "연극영화",
+};

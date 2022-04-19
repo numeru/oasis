@@ -1,6 +1,6 @@
 import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import UploadWork from "@pages/mypage/upload-work";
+import UploadWork from "pages/mypage/upload-work";
 
 export default {
 	title: "Design System/Pages/MyPage/UploadWork",

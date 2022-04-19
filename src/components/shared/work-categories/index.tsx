@@ -1,5 +1,5 @@
 import React from "react";
-import { categories, uploadCategories } from "@constants/categories";
+import { categories, uploadCategories } from "constants/categories";
 import { useLocation } from "react-router-dom";
 import { CategoryButton, CategoryMenus } from "./styled";
 

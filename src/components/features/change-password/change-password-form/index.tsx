@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-import { FormConfirmButton } from "@components/shared/form-buttons/styled";
-import FormItem from "@components/shared/form-item";
-import useInput from "@hooks/useInput";
-import useChangePassword from "@hooks/useChangePassword";
+import { FormConfirmButton } from "components/shared/form-buttons/styled";
+import FormItem from "components/shared/form-item";
+import useInput from "hooks/useInput";
+import useChangePassword from "components/features/change-password/change-password-form/useChangePassword";
 
 const ChangePasswordFormContainer = styled.form`
 	width: 100%;

@@ -1,6 +1,6 @@
 import React from "react";
-import InvisibleEye from "@assets/images/login/invisible_eye.svg";
-import VisibleEye from "@assets/images/login/visible_eye.svg";
+import InvisibleEye from "assets/images/login/invisible_eye.svg";
+import VisibleEye from "assets/images/login/visible_eye.svg";
 import styled from "styled-components";
 
 const ToggleButton = styled.button`

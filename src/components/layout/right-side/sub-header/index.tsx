@@ -1,9 +1,9 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 import styled from "styled-components";
-import ArrowBackIcon from "@assets/images/mypage/arrow_back_icon.svg";
+import ArrowBackIcon from "assets/images/mypage/arrow_back_icon.svg";
 import { useSelector } from "react-redux";
-import { selectUI } from "@stores/store";
+import { selectUI } from "stores/store";
 
 export const SubHeaderContainer = styled.header`
 	position: sticky;

@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { changeHeader, initHeader } from "@stores/slices/ui-slice";
+import { changeHeader, initHeader } from "stores/slices/ui-slice";
 import { useDispatch } from "react-redux";
 
 type HeaderInfo = {
@@ -23,7 +23,7 @@ const useChangeHeader = ({ headerType, buttonName, buttonType, clickFn }: Header
 		return () => {
 			dispatch(initHeader());
 		};
-	}, [asyncFlag]);
+	}, [clickFn, asyncFlag]);
 };
 
 export default useChangeHeader;

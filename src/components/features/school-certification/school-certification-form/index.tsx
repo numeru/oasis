@@ -1,5 +1,5 @@
 import React, { useState, useRef, useMemo } from "react";
-import { UserUploadFile } from "@utils/types";
+import { UserUploadFile } from "utils/types";
 import {
 	UploadSchoolIdCardForm,
 	SchoolIdCardUploadButton,
@@ -8,10 +8,10 @@ import {
 	SubmitSchoolIdCardButton,
 	SchoolIdCardDeleteButton,
 } from "./styled";
-import { InvisibleFileInput } from "@components/shared/invisible-file-input/styled";
-import { AlertFailModal } from "@components/shared/alert-messages/styled";
-import useSchoolCertification from "@hooks/useSchoolCertification";
-import { imageTypeFormatter } from "@utils/formatter";
+import { InvisibleFileInput } from "components/shared/invisible-file-input/styled";
+import { AlertFailModal } from "components/shared/alert-messages/styled";
+import useSchoolCertification from "components/features/school-certification/school-certification-form/useSchoolCertification";
+import { imageTypeFormatter } from "utils/formatter";
 
 const SchoolCertificationForm = () => {
 	const [studentIdCardImage, setStudentIdCardImage] = useState<UserUploadFile | null>(null);

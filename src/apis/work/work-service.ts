@@ -1,9 +1,9 @@
 import axios, { AxiosInstance } from "axios";
-import API_URL, { API_HOST, BasicResult } from "@apis/api";
-import AuthService, { IAuthService } from "@apis/auth/auth-service";
+import API_URL, { API_HOST, BasicResult } from "apis/api";
+import AuthService, { IAuthService } from "apis/auth/auth-service";
 import { UploadWorkRequest } from "./types";
-import { getStorageItem, storageAccessKey, storageTokenType } from "@utils/local-storage";
-import { RESPONSE_STATUS_400, RESPONSE_STATUS_500 } from "@constants/api";
+import { getStorageItem, storageAccessKey, storageTokenType } from "utils/local-storage";
+import { RESPONSE_STATUS_400, RESPONSE_STATUS_500 } from "constants/api";
 
 class WorkService {
 	private base: AxiosInstance;
@@ -57,39 +57,55 @@ class WorkService {
 		this.authService = new AuthService();
 	}
 
-	async uploadWork({ title, description, category, artFiles }: UploadWorkRequest) {
-		const { upload } = this.workUrl;
+	async uploadWork({
+		title,
+		description,
+		category,
+		workImages,
+		tags,
+		collaborators,
+		copyright,
+		commercialCopyright,
+		modifyCopyright,
+	}: UploadWorkRequest) {
+		const { basic } = this.workUrl;
 
 		const config = this.authService.setAuthHeader();
 		config.headers["Content-Type"] = "multipart/form-data";
 
 		const formData = new FormData();
 
-		formData.append("title", title);
-		formData.append("description", description);
-		formData.append("category", category);
+		const artLog = `{"title":"${title}","description":"${description}","category":"${category}","tags":[${tags
+			.split(",")
+			.map((tag) => `"${tag.trim()}"`)}],"collaborators":"${collaborators}","cclType":${
+			copyright === "hide"
+				? null
+				: `{"cclCommercialType":"${commercialCopyright}","contentModifyType":"${modifyCopyright}"}`
+		}}`;
 
-		for (let i = 0; i < artFiles.length; i++) {
-			const { file } = artFiles[i];
-			formData.append("artFiles", file);
+		formData.append("artLog", artLog);
+
+		for (let i = 0; i < workImages.length; i++) {
+			const { file } = workImages[i];
+			formData.append("artLogFiles", file);
 		}
 
-		const response = await this.base.post(upload, formData, config);
-		const result: BasicResult = await response.data;
+		const response = await this.base.post(basic, formData, config);
+		const result = response.status;
 
 		return result;
 	}
 
-	async deleteWork(userId: string) {
+	async deleteWork(workId: string) {
 		const { basic } = this.workUrl;
 
 		const config = this.authService.setAuthHeader();
 
-		const response = await this.base.delete(`${basic}/${userId}/detail/delete`, config);
+		const response = await this.base.delete(`${basic}/${workId}`, config);
 
-		const result: BasicResult = await response.data;
+		const statusCode = response.status;
 
-		return result;
+		return statusCode;
 	}
 }
 

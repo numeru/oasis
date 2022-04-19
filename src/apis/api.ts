@@ -13,27 +13,27 @@ export const API_HOST = "";
 
 const API_URL = {
 	auth: {
-		signup: "/signUp",
-		login: "/signIn",
+		signup: "/sign-up",
+		login: "/sign-in",
 		logout: "/signOut",
-		check: "/token/health",
-		token: "/issueToken",
+		check: "/token-health",
+		token: "/issue-token",
 	},
 	work: {
-		basic: "/home/artStory",
-		upload: "/home/artStory/artLog/submit",
+		basic: "/art-logs",
 	},
 	feed: {
-		basic: "/home/artStory",
-		detail: "/detail",
+		basic: "/art-stories",
 	},
 	user: {
 		basic: "/account/profile",
 		update: "/account/profile/update",
 		search: "/search",
-		works: "/home/artStory",
+		works: "/art-logs",
 		heart: "/account/profile/heart",
 		school: "/account/profile/studentIdCard/upload",
+		password: "/account/password",
+		draw: "/account/draw",
 	},
 };
 

@@ -1,6 +1,6 @@
 import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import AlertModal from "@components/shared/alert-modal";
+import AlertModal from "components/shared/alert-modal";
 
 export default {
 	title: "Design System/Common/AlertModal",

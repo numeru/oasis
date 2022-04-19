@@ -1,14 +1,14 @@
 import React, { useEffect, useMemo, useState } from "react";
-import { feedFetcher } from "@utils/fetcher";
+import { feedFetcher } from "utils/fetcher";
 import useSWRInfinite from "swr/infinite";
-import API_URL, { API_HOST } from "@apis/api";
-import { Feed } from "@utils/types";
-import { AMOUNT_OF_DATA_AT_ONCE, DEDUPING_INTERVAL_TIME } from "@constants/swr";
+import API_URL, { API_HOST } from "apis/api";
+import { HomeFeed } from "utils/types";
+import { AMOUNT_OF_DATA_AT_ONCE } from "constants/swr";
 
-type ReturnTypes = [Feed[], boolean, () => void];
+type ReturnTypes = [HomeFeed[], boolean, () => void];
 
 const useGetAllFeedList = (selectedCategory: string): ReturnTypes => {
-	const [allFeeds, setAllFeeds] = useState<Feed[]>([]);
+	const [allFeeds, setAllFeeds] = useState<HomeFeed[]>([]);
 
 	const limit = AMOUNT_OF_DATA_AT_ONCE;
 
@@ -16,13 +16,12 @@ const useGetAllFeedList = (selectedCategory: string): ReturnTypes => {
 		feed: { basic },
 	} = API_URL;
 
-	const getKey = (index: number, previousPageData: Feed[] | null) => {
+	const getKey = (index: number, previousPageData: HomeFeed[] | null) => {
 		if (previousPageData && !previousPageData.length) return null;
-		return `${API_HOST}${basic}?category=${selectedCategory}&page=${index + 1}&pageSize=${limit}`;
+		return `${API_HOST}${basic}?category=${selectedCategory}&page=${index}&size=${limit}`;
 	};
 
 	const { data: allFeedsData, setSize } = useSWRInfinite(getKey, feedFetcher, {
-		dedupingInterval: DEDUPING_INTERVAL_TIME,
 		revalidateOnFocus: false,
 	});
 

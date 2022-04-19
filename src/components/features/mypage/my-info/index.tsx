@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import UserProfileBlank from "@assets/images/mypage/user_profile_blank.svg";
+import UserProfileBlank from "assets/images/mypage/user_profile_blank.svg";
 import { MdEdit } from "react-icons/md";
 import {
 	LikeImage,
@@ -14,8 +14,9 @@ import {
 	UserProfile,
 } from "./styled";
 import { useSelector } from "react-redux";
-import { selectUser } from "@stores/store";
-import useImageSize from "@hooks/useImageSize";
+import { selectUser } from "stores/store";
+import useImageSize from "hooks/useImageSize";
+import { USER_UNIVERSITY_VERIFICATION } from "constants/user";
 
 const MyInfo = () => {
 	const userSelector = useSelector(selectUser);
@@ -30,7 +31,7 @@ const MyInfo = () => {
 	} = userSelector;
 
 	const isUniversityVerified = useMemo(
-		() => universityVerify === "VERIFICATION",
+		() => universityVerify === USER_UNIVERSITY_VERIFICATION,
 
 		[universityVerify],
 	);

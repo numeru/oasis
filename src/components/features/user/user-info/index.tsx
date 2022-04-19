@@ -1,16 +1,16 @@
 import React from "react";
-import UserProfileBlank from "@assets/images/mypage/user_profile_blank.svg";
+import UserProfileBlank from "assets/images/mypage/user_profile_blank.svg";
 import {
 	PersonalInfo,
 	UserImageWrapper,
 	UserImageBlank,
 	UserInfoContainer,
 	UserProfile,
-} from "@components/features/mypage/my-info/styled";
+} from "components/features/mypage/my-info/styled";
 import styled from "styled-components";
-import LikeButton from "@components/shared/like-button";
-import useImageSize from "@hooks/useImageSize";
-import useGetUserInfo from "@hooks/useGetUserInfo";
+import LikeButton from "components/shared/like-button";
+import useImageSize from "hooks/useImageSize";
+import useGetUserInfo from "components/features/user/user-info/useGetUserInfo";
 
 const UserIntroduction = styled.p`
 	width: 100%;

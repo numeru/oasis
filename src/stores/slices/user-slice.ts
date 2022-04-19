@@ -1,5 +1,6 @@
 import { UserData } from "./../../apis/auth/types";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { USER_STATUS_INACTIVE, USER_UNIVERSITY_NO_VERIFICATION } from "constants/user";
 
 type InitialState = {
 	isLogin: boolean;
@@ -33,7 +34,7 @@ type InitialState = {
 	createDt: string;
 	updateDt: string;
 	ableUpdate: boolean;
-}; //초기 타입지정
+};
 
 const initialState: InitialState = {
 	isLogin: false,
@@ -48,10 +49,10 @@ const initialState: InitialState = {
 	uuid: "",
 	emailId: "",
 	userName: "",
-	userStatus: "INACTIVE",
+	userStatus: USER_STATUS_INACTIVE,
 	universityName: null,
 	universityMajor: null,
-	universityVerify: "NO_VERIFICATION",
+	universityVerify: USER_UNIVERSITY_NO_VERIFICATION,
 	termsOfService: false,
 	privacyOfPolicy: false,
 	marketingSubscription: false,
@@ -62,7 +63,7 @@ const initialState: InitialState = {
 	createDt: "",
 	updateDt: "",
 	ableUpdate: false,
-}; //초기 상태 인스턴스 생성
+};
 export const userSlice = createSlice({
 	name: "user",
 	initialState,
@@ -75,10 +76,10 @@ export const userSlice = createSlice({
 			state.uuid = "";
 			state.emailId = "";
 			state.userName = "";
-			state.userStatus = "INACTIVE";
+			state.userStatus = USER_STATUS_INACTIVE;
 			state.universityName = null;
 			state.universityMajor = null;
-			state.universityVerify = "NO_VERIFICATION";
+			state.universityVerify = USER_UNIVERSITY_NO_VERIFICATION;
 			state.termsOfService = false;
 			state.privacyOfPolicy = false;
 			state.marketingSubscription = false;

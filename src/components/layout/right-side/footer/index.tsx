@@ -1,6 +1,6 @@
 import React from "react";
-import InstaIcon from "@assets/images/layout/insta_icon.svg";
-import MailIcon from "@assets/images/layout/mail_icon.svg";
+import InstaIcon from "assets/images/layout/insta_icon.svg";
+import MailIcon from "assets/images/layout/mail_icon.svg";
 import { LayoutFooter, FooterOptionList, FooterOptionButton, FooterCompanyInfo, FooterCopyright } from "./styled";
 
 const Footer = () => {

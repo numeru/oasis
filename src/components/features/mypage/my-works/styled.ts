@@ -22,9 +22,7 @@ export const GuideMessage = styled.p`
 `;
 
 export const UploadWorkButton = styled(Link)`
-	position: absolute;
-	bottom: 0;
-	right: 0;
+	margin-bottom: 20px;
 `;
 
 export const UploadedMyWorks = styled.ul`

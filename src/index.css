@@ -66,7 +66,7 @@ button {
 	src: url("./assets/fonts/NanumSquareRoundL.woff2") format("woff2"),
 		url("./assets/fonts/NanumSquareRoundL.woff") format("woff"),
 		url("./assets/fonts/NanumSquareRoundL.ttf") format("ttf");
-	font-display: fallback;
+	font-display: swap;
 }
 
 @font-face {

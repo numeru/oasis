@@ -1,10 +1,10 @@
 import React from "react";
-import SignUpFormService from "@services/signup_form_service";
+import SignUpFormService from "services/signup_form_service";
 import { useDispatch } from "react-redux";
-import { responseErrorWarning, userLogin } from "@stores/slices/user-slice";
-import { BASIC_ERROR_MESSAGE, RESPONSE_STATUS_200, RESPONSE_STATUS_400 } from "@constants/api";
+import { responseErrorWarning, userLogin } from "stores/slices/user-slice";
+import { BASIC_ERROR_MESSAGE, RESPONSE_STATUS_200, RESPONSE_STATUS_400 } from "constants/api";
 import { useHistory } from "react-router-dom";
-import AuthService from "@apis/auth/auth-service";
+import AuthService from "apis/auth/auth-service";
 
 const authService = new AuthService();
 
@@ -23,13 +23,9 @@ const useCompleteSignUpForm = (
 		};
 
 		try {
-			const {
-				statusCode,
-				data: { message },
-			} = await authService.login(data);
+			const statusCode = await authService.login(data);
 
 			if (statusCode >= RESPONSE_STATUS_400) {
-				alert(message);
 				return;
 			}
 

@@ -1,6 +1,6 @@
 import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import Settings from "@pages/settings";
+import Settings from "pages/settings";
 
 export default {
 	title: "Design System/Pages/Settings",

@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import { WorkImage } from "@utils/types";
+import { WorkImage } from "utils/types";
 import styled from "styled-components";
 import { RemoveUploadedImageButton, RepresentativeTag, UploadImageBox } from "../upload-work-form/styled";
-import CloseIcon from "@assets/images/mypage/close_icon.svg";
-import PlusIcon from "@assets/images/mypage/plus_icon.svg";
+import CloseIcon from "assets/images/mypage/close_icon.svg";
+import PlusIcon from "assets/images/mypage/plus_icon.svg";
 export const WorkImages = styled.ul`
 	display: flex;
 	flex-wrap: wrap;

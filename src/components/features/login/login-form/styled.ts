@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { FormCancelButton, FormConfirmButton } from "@components/shared/form-buttons/styled";
+import { FormCancelButton, FormConfirmButton } from "components/shared/form-buttons/styled";
 export const LoginHeader = styled.header`
 	width: 100%;
 	display: flex;

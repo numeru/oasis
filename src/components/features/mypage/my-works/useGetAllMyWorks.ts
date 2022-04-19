@@ -1,26 +1,26 @@
 import React, { useEffect, useMemo, useState } from "react";
-import { feedFetcher } from "@utils/fetcher";
-import { Feed } from "@utils/types";
-import API_URL, { API_HOST } from "@apis/api";
+import { worksFetcher } from "utils/fetcher";
+import { HomeFeed } from "utils/types";
+import API_URL, { API_HOST } from "apis/api";
 import useSWRInfinite from "swr/infinite";
-import { AMOUNT_OF_DATA_AT_ONCE, DEDUPING_INTERVAL_TIME } from "@constants/swr";
+import { AMOUNT_OF_DATA_AT_ONCE } from "constants/swr";
 
-type ReturnType = [Feed[], boolean, () => void];
+type ReturnType = [HomeFeed[], boolean, () => void];
 
 const useGetAllMyWorks = (uuid: string): ReturnType => {
-	const [allMyWorks, setAllMyWorks] = useState<Feed[]>([]);
+	const [allMyWorks, setAllMyWorks] = useState<HomeFeed[]>([]);
 	const limit = AMOUNT_OF_DATA_AT_ONCE;
 
 	const {
 		user: { works },
 	} = API_URL;
 
-	const getKey = (index: number, previousPageData: Feed[] | null) => {
+	const getKey = (index: number, previousPageData: HomeFeed[] | null) => {
 		if (previousPageData && !previousPageData.length) return null;
-		return `${API_HOST}${works}/${uuid}?category=ALL&page=${index + 1}&pageSize=${limit}`;
+		return `${API_HOST}${works}/@${uuid}?category=ALL&page=${index}&size=${limit}`;
 	};
 
-	const { data: allMyWorksData, setSize } = useSWRInfinite(getKey, feedFetcher, {
+	const { data: allMyWorksData, setSize } = useSWRInfinite(getKey, worksFetcher, {
 		revalidateOnFocus: false,
 	});
 

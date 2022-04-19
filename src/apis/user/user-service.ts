@@ -1,9 +1,9 @@
-import { RESPONSE_STATUS_400, RESPONSE_STATUS_500 } from "@constants/api";
+import { RESPONSE_STATUS_400, RESPONSE_STATUS_500 } from "constants/api";
 import axios, { AxiosInstance } from "axios";
-import API_URL, { API_HOST, BasicResult } from "@apis/api";
-import AuthService, { IAuthService } from "@apis/auth/auth-service";
-import { EditProfileRequest } from "./types";
-import { getStorageItem, storageAccessKey, storageTokenType } from "@utils/local-storage";
+import API_URL, { API_HOST, BasicResult } from "apis/api";
+import AuthService, { IAuthService } from "apis/auth/auth-service";
+import { ChangePasswordRequest, EditProfileRequest } from "./types";
+import { getStorageItem, storageAccessKey, storageTokenType } from "utils/local-storage";
 
 class UserService {
 	private base: AxiosInstance;
@@ -99,6 +99,21 @@ class UserService {
 		const result: BasicResult = await response.data;
 
 		return result;
+	}
+
+	async changePassword({ confirmation, currentPassword, newPassword }: ChangePasswordRequest) {
+		const { password } = this.userUrl;
+
+		const config = this.authService.setAuthHeader();
+		const data = {
+			confirmation,
+			currentPassword,
+			newPassword,
+		};
+
+		const response = await this.base.patch(password, data, config);
+		const status = response.status;
+		return status;
 	}
 }
 

@@ -1,6 +1,6 @@
 import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import AccountInquiry from "@pages/inquiry/account";
+import AccountInquiry from "pages/inquiry/account";
 
 export default {
 	title: "Design System/Pages/AccountInquiry",

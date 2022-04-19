@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
-import { WorkImage } from "@utils/types";
-import { imageTypeFormatter } from "@utils/formatter";
+import { WorkImage } from "utils/types";
+import { imageTypeFormatter } from "utils/formatter";
 
 type ReturnType = [
 	WorkImage[],

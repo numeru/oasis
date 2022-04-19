@@ -1,6 +1,6 @@
 import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import Home from "@pages/home";
+import Home from "pages/home";
 
 export default {
 	title: "Design System/Pages/Home",

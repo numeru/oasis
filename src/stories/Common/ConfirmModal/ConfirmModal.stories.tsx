@@ -1,6 +1,6 @@
 import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import ConfirmModal from "@components/shared/confirm-modal";
+import ConfirmModal from "components/shared/confirm-modal";
 
 export default {
 	title: "Design System/Common/ConfirmModal",

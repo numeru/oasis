@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import SignUpFormService from "@services/signup_form_service";
-import EmailCertificationForm from "@components/features/email-certification/certification-form";
-import useTimeOutState from "@hooks/useTimeOutState";
-import { RESEND_TIME_OUT } from "@constants/alert";
-import ConfirmModal from "@components/shared/confirm-modal";
+import SignUpFormService from "services/signup_form_service";
+import EmailCertificationForm from "components/features/email-certification/certification-form";
+import useTimeOutState from "hooks/useTimeOutState";
+import { RESEND_TIME_OUT } from "constants/alert";
+import ConfirmModal from "components/shared/confirm-modal";
 
 type Props = {
 	signUpFormService: SignUpFormService;

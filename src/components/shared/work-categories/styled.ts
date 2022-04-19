@@ -11,6 +11,19 @@ export const CategoryMenus = styled.ul`
 	margin-bottom: 2%;
 	overflow-y: scroll;
 
+	&:hover {
+		padding-bottom: 4px;
+
+		&::-webkit-scrollbar {
+			display: block;
+			height: 4px;
+		}
+	}
+
+	&::-webkit-scrollbar-thumb {
+		background-color: var(--color-lighter-gray);
+	}
+
 	& > li:not(:last-child) {
 		margin-right: 5%;
 	}

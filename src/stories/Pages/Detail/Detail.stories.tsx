@@ -1,10 +1,10 @@
 import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import Detail from "@pages/detail";
+import Detail from "pages/detail";
 import withMock from "storybook-addon-mock";
-import { API_HOST } from "@apis/api";
-import DummyCoverImage from "@assets/images/dummy/dummy_image_1.png";
-import DummyProfileImage from "@assets/images/dummy/dummy_image_2.png";
+import { API_HOST } from "apis/api";
+import DummyCoverImage from "assets/images/dummy/dummy_image_1.png";
+import DummyProfileImage from "assets/images/dummy/dummy_image_2.png";
 
 export default {
 	title: "Design System/Pages/Detail",

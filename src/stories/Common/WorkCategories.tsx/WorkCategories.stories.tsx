@@ -1,6 +1,6 @@
 import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import WorkCategories from "@components/shared/work-categories";
+import WorkCategories from "components/shared/work-categories";
 
 export default {
 	title: "Design System/Common/WorkCategories",

@@ -1,7 +1,7 @@
 import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import Picture from "@components/shared/picture";
-import { Banner } from "@assets/device-images";
+import Picture from "components/shared/picture";
+import { Banner } from "assets/device-images";
 
 export default {
 	title: "Design System/Common/Picture",

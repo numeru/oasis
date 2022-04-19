@@ -1,6 +1,6 @@
 import React from "react";
 import { ComponentMeta, ComponentStory } from "@storybook/react";
-import MyPage from "@pages/mypage";
+import MyPage from "pages/mypage";
 import { MemoryRouter } from "react-router-dom";
 
 export default {

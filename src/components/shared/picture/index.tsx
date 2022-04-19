@@ -1,7 +1,7 @@
 import React from "react";
-import Source from "@components/shared/source";
-import { DeviceImage } from "@assets/device-images";
-import { minTypeFormatter } from "@utils/formatter";
+import Source from "components/shared/source";
+import { DeviceImage } from "assets/device-images";
+import { minTypeFormatter } from "utils/formatter";
 import styled from "styled-components";
 
 const PictureWrapper = styled.picture`
