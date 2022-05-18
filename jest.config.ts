@@ -1,22 +1,28 @@
-module.exports = {
-	transform: {
-		"^.+\\.tsx?$": "ts-jest",
-	},
-	testEnvironment: "jsdom",
-	setupFilesAfterEnv: ["<rootDir>/setUpTests.ts"],
-	moduleFileExtensions: ["ts", "tsx", "js", "jsx", "json"],
-	transformIgnorePatterns: ["/node_modules/"],
-	testRegex: "/tests/.*\\.(ts|tsx)$",
+const nextJest = require('next/jest');
+
+const createJestConfig = nextJest({
+	dir: './',
+});
+
+const customJestConfig = {
+	testEnvironment: 'jest-environment-jsdom',
+	setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
+	moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json'],
+	moduleDirectories: ['node_modules', '<rootDir>/'],
 	clearMocks: true,
 	moduleNameMapper: {
-		"hooks/(.*)": "<rootDir>/src/hooks/$1",
-		"components/(.*)": "<rootDir>/src/components/$1",
-		"pages/(.*)": "<rootDir>/src/pages/$1",
-		"utils/(.*)": "<rootDir>/src/utils/$1",
-		"stores/(.*)": "<rootDir>/src/stores/$1",
-		"assets/(.*)": "<rootDir>/src/assets/$1",
-		"services/(.*)": "<rootDir>/src/services/$1",
-		"constants/(.*)": "<rootDir>/src/constants/$1",
-		"apis/(.*)": "<rootDir>/src/apis/$1",
+		'hooks/(.*)': '<rootDir>/hooks/$1',
+		'components/(.*)': '<rootDir>/components/$1',
+		'pages/(.*)': '<rootDir>/pages/$1',
+		'utils/(.*)': '<rootDir>/utils/$1',
+		'stores/(.*)': '<rootDir>/stores/$1',
+		'constants/(.*)': '<rootDir>/constants/$1',
+		'apis/(.*)': '<rootDir>/apis/$1',
+		'types/(.*)': '<rootDir>/types/$1',
 	},
+	testRegex: '(/__tests__/.*|(\\.|/)(test|spec))\\.tsx?$',
 };
+
+module.exports = createJestConfig(customJestConfig);
+
+export {};

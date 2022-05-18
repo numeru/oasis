@@ -1,27 +1,32 @@
 {
 	"compilerOptions": {
-		"outDir": "./dist/",
-		"esModuleInterop": true,
-		"sourceMap": true,
-		"lib": ["ES2020", "DOM"],
-		"jsx": "react",
-		"module": "CommonJS",
-		"moduleResolution": "Node",
-		"target": "esnext",
+		"target": "es5",
+		"lib": ["dom", "dom.iterable", "esnext"],
+		"allowJs": true,
+		"skipLibCheck": true,
 		"strict": true,
+		"forceConsistentCasingInFileNames": true,
+		"noEmit": true,
+		"esModuleInterop": true,
+		"module": "esnext",
+		"isolatedModules": true,
+		"moduleResolution": "node",
 		"resolveJsonModule": true,
+		"jsx": "preserve",
+		"incremental": true,
 		"baseUrl": ".",
 		"paths": {
-			"hooks/*": ["src/hooks/*"],
-			"components/*": ["src/components/*"],
-			"pages/*": ["src/pages/*"],
-			"utils/*": ["src/utils/*"],
-			"stores/*": ["src/stores/*"],
-			"assets/*": ["src/assets/*"],
-			"services/*": ["src/services/*"],
-			"constants/*": ["src/constants/*"],
-			"apis/*": ["src/apis/*"]
+			"hooks/*": ["hooks/*"],
+			"components/*": ["components/*"],
+			"pages/*": ["pages/*"],
+			"utils/*": ["utils/*"],
+			"stores/*": ["stores/*"],
+			"constants/*": ["constants/*"],
+			"apis/*": ["apis/*"],
+			"types/*": ["types/*"],
+			"assets/*": ["public/assets/*"]
 		}
 	},
-	"exclude": ["**/*.spec.ts"]
+	"exclude": ["node_modules"],
+	"include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"]
 }
