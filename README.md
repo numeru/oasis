@@ -17,6 +17,7 @@
 
 [![TypeScript Badge](https://img.shields.io/badge/Typescript-235A97?style=flat-square&logo=Typescript&logoColor=white)]()
 [![React Badge](https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=React&logoColor=white)]()
+[![NextJs Badge](https://img.shields.io/badge/NextJs-000000?style=flat-square&logo=Next.js&logoColor=white)]()
 [![webpack Badge](https://img.shields.io/badge/Webpack-8DD6F9?style=flat-square&logo=webpack&logoColor=white)]()
 [![redux Badge](https://img.shields.io/badge/Redux-764ABC?style=flat-square&logo=Redux&logoColor=white)]()
 [![webpack Badge](https://img.shields.io/badge/ReduxSaga-999999?style=flat-square&logo=ReduxSaga&logoColor=white)]()
@@ -45,7 +46,6 @@ client
     ├── constants                    # 상수
     ├── hooks                        # custom hooks
     ├── pages                        # 페이지
-    ├── services                     # 컴포넌트에 사용되는 클래스
     ├── stores                       # redux 상태 관리
     ├── stories                      # storybook
     |   └── Common
