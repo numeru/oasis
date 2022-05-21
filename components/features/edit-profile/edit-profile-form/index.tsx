@@ -18,7 +18,7 @@ import { selectUser } from 'stores/store';
 import { UserUploadFile } from 'types/upload';
 import { INTRODUCTION_LETTERS_LIMIT } from 'constants/letters';
 import useUploadProfile from 'components/features/edit-profile/edit-profile-form/useUploadProfile';
-import { imageTypeFormatter } from 'utils/formatter';
+import useUploadImage from 'hooks/useUploadImage';
 
 type Props = {
 	setIsEdited: Dispatch<SetStateAction<boolean>>;
@@ -31,7 +31,7 @@ const EditProfileForm = ({ setIsEdited, isFormSubmitted }: Props) => {
 
 	const [profileImage, setProfileImage] = useState<UserUploadFile | null>(null);
 
-	const [userIntroduction, handleUserIntroduction, setUserIntroduction] = useInput(profileDescription || '');
+	const [userIntroduction, handleUserIntroduction, setUserIntroduction] = useInput<string>(profileDescription || '');
 
 	const numberOfIntroduction = useTextLimit(userIntroduction, setUserIntroduction, INTRODUCTION_LETTERS_LIMIT);
 
@@ -42,26 +42,12 @@ const EditProfileForm = ({ setIsEdited, isFormSubmitted }: Props) => {
 	};
 
 	useEffect(() => {
-		setUserIntroduction(profileDescription);
-	}, [profileDescription]);
-
-	useEffect(() => {
 		setIsEdited((profileImage !== null || numberOfIntroduction > 0) && profileDescription !== userIntroduction);
 	}, [profileImage, profileDescription, numberOfIntroduction]);
 
-	const uploadProfileImage = (e: ChangeEvent<HTMLInputElement>) => {
-		const fileList = e.target.files;
+	const uploadProfileImage = useUploadImage(profileImage, setProfileImage, fileInputRef);
 
-		if (fileList && fileList[0]) {
-			const url = URL.createObjectURL(fileList[0]);
-
-			setProfileImage({
-				file: fileList[0],
-				thumbnail: url,
-				type: imageTypeFormatter(fileList[0].type),
-			});
-		}
-	};
+	const handleUploadProfile = useUploadProfile(userIntroduction, setUserIntroduction, profileImage, setIsEdited);
 
 	const showProfileImage = useMemo(() => {
 		if (!profileImage && !profileImgPath) {
@@ -82,8 +68,6 @@ const EditProfileForm = ({ setIsEdited, isFormSubmitted }: Props) => {
 			</UserProfileImageButton>
 		);
 	}, [profileImage, profileImgPath]);
-
-	const handleUploadProfile = useUploadProfile(userIntroduction, profileImage, setIsEdited);
 
 	useEffect(() => {
 		if (isFormSubmitted) {

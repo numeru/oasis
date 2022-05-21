@@ -7,7 +7,7 @@ import WithAuth from 'utils/HOC/withAuth';
 // import { Prompt } from 'react-router-dom';
 
 const UploadWork = () => {
-	useChangeHeader('sub');
+	useChangeHeader('sub', true);
 
 	const [showAlertModal, setShowAlertModal] = useState(false);
 

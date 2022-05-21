@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo } from 'react';
 import { feedFetcher } from 'utils/fetcher';
 import useSWRInfinite from 'swr/infinite';
 import API_URL, { API_HOST } from 'apis/api';
@@ -7,9 +7,7 @@ import { AMOUNT_OF_DATA_AT_ONCE } from 'constants/swr';
 
 type ReturnTypes = [HomeFeed[], boolean, () => void];
 
-const useGetAllFeedList = (selectedCategory: string, feedFallbackData: HomeFeed[]): ReturnTypes => {
-	const [allFeeds, setAllFeeds] = useState<HomeFeed[]>([]);
-
+const useGetAllFeedList = (selectedCategory: string): ReturnTypes => {
 	const limit = AMOUNT_OF_DATA_AT_ONCE;
 
 	const {
@@ -23,18 +21,7 @@ const useGetAllFeedList = (selectedCategory: string, feedFallbackData: HomeFeed[
 
 	const { data: allFeedsData, setSize } = useSWRInfinite(getKey, feedFetcher, {
 		revalidateOnFocus: false,
-		fallbackData: feedFallbackData || undefined,
 	});
-
-	const getAllFeeds = () => {
-		if (allFeedsData) {
-			setAllFeeds(allFeedsData.flat());
-		}
-	};
-
-	useEffect(() => {
-		getAllFeeds();
-	}, [allFeedsData]);
 
 	const isEmpty = useMemo(() => allFeedsData?.[0]?.length === 0, [allFeedsData]);
 	const isReachingEnd = useMemo(
@@ -48,7 +35,7 @@ const useGetAllFeedList = (selectedCategory: string, feedFallbackData: HomeFeed[
 		}
 	};
 
-	return [allFeeds, isReachingEnd, handleClickMoreFeedsButton];
+	return [allFeedsData?.flat() || [], isReachingEnd, handleClickMoreFeedsButton];
 };
 
 export default useGetAllFeedList;

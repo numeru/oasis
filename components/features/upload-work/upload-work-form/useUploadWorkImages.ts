@@ -1,4 +1,4 @@
-import { useRef, useState, RefObject, ChangeEvent } from 'react';
+import { useRef, useState, RefObject, ChangeEvent, useEffect } from 'react';
 import { WorkImage } from 'types/work';
 import { imageTypeFormatter } from 'utils/formatter';
 
@@ -73,6 +73,14 @@ const useUploadWorkImages = (): ReturnType => {
 			if (changeImageRef.current) changeImageRef.current.value = '';
 		}
 	};
+
+	useEffect(() => {
+		return () => {
+			workImages.forEach((img) => {
+				URL.revokeObjectURL(img.thumbnail);
+			});
+		};
+	}, []);
 
 	const [workImageToBeDeleted, setWorkImageToBeDeleted] = useState<number | null>(null);
 

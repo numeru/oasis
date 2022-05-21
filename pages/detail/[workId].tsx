@@ -5,12 +5,11 @@ import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import { ParsedUrlQuery } from 'querystring';
 import axios from 'axios';
 import API_URL, { API_HOST } from 'apis/api';
-import SubHeader from 'components/layout/right-side/sub-header';
-import wrapper, { selectUser } from 'stores/store';
+import wrapper from 'stores/store';
 import { WorkDetailInfo } from 'types/work';
-import { changeHeader } from 'stores/slices/ui-slice';
-import useChangeHeader from 'hooks/useChangeHeader';
-import { useSelector } from 'react-redux';
+import { changeHeader, initHeader } from 'stores/slices/ui-slice';
+import SubHeader from 'components/layout/right-side/sub-header';
+import useCheckUserData from 'hooks/useCheckUserData';
 
 const DetailContainer = styled.main`
 	width: 100%;
@@ -29,17 +28,17 @@ export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps
 	} = API_URL;
 
 	try {
-		const workDetailData: WorkDetailInfo = await axios
+		const workDetailFallbackData: WorkDetailInfo = await axios
 			.get(`${API_HOST}${basic}/${workId}`)
 			.then((response) => response.data);
 
-		store.dispatch(changeHeader('sub'));
+		store.dispatch(changeHeader({ headerType: 'sub', isButtonVisible: false }));
 
 		return {
-			props: { workDetailData },
+			props: { workId, workDetailFallbackData },
 		};
 	} catch (error) {
-		store.dispatch(changeHeader('default'));
+		store.dispatch(initHeader());
 
 		return {
 			redirect: {
@@ -50,10 +49,14 @@ export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps
 	}
 });
 
-const WorkDetail = ({ workDetailData }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
-	useChangeHeader('sub');
-
-	const { uuid } = useSelector(selectUser);
+const WorkDetail = ({
+	workId,
+	workDetailFallbackData,
+}: InferGetServerSidePropsType<{
+	workId: string;
+	workDetailFallbackData: WorkDetailInfo;
+}>) => {
+	useCheckUserData();
 
 	const [showDeleteModal, setShowDeleteModal] = useState(false);
 
@@ -67,15 +70,11 @@ const WorkDetail = ({ workDetailData }: InferGetServerSidePropsType<typeof getSe
 
 	return (
 		<>
-			<SubHeader
-				buttonName="삭제"
-				buttonType="button"
-				clickFn={handleClickDeleteWorkButton}
-				isButtonVisible={workDetailData.user?.userUuid === uuid}
-			/>
+			<SubHeader buttonName="삭제" buttonType="button" clickFn={handleClickDeleteWorkButton} />
 			<DetailContainer>
 				<WorkDetailContent
-					workDetailData={workDetailData}
+					workId={workId}
+					workDetailFallbackData={workDetailFallbackData}
 					showDeleteModal={showDeleteModal}
 					handleClickCancelButton={handleClickCancelButton}
 				/>

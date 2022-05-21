@@ -3,13 +3,24 @@ import { WorkDetailInfo } from 'types/work';
 import { useSelector } from 'react-redux';
 import { selectUser } from 'stores/store';
 import { COPYRIGHT_INSTRUCTIONS } from 'constants/copyright';
+import useSWRImmutable from 'swr/immutable';
+import API_URL, { API_HOST } from 'apis/api';
+import { workDetailFetcher } from 'utils/fetcher';
 
-type ReturnTypes = [boolean, string[]];
+type ReturnTypes = [WorkDetailInfo | undefined, boolean, string[]];
 
-const useGetWorkDetail = (workDetailData: WorkDetailInfo): ReturnTypes => {
+const useGetWorkDetail = (workId: string, workDetailFallbackData: WorkDetailInfo): ReturnTypes => {
 	const { uuid } = useSelector(selectUser);
 
-	const isMine = useMemo(() => workDetailData.user?.userUuid === uuid, [workDetailData, uuid]);
+	const {
+		work: { basic },
+	} = API_URL;
+
+	const { data: workDetailData } = useSWRImmutable<WorkDetailInfo>(`${API_HOST}${basic}/${workId}`, workDetailFetcher, {
+		fallbackData: workDetailFallbackData,
+	});
+
+	const isMine = useMemo(() => workDetailData?.user?.userUuid === uuid, [workDetailData, uuid]);
 
 	const cclInstruction = useMemo(() => {
 		if (!workDetailData) return [];
@@ -27,7 +38,7 @@ const useGetWorkDetail = (workDetailData: WorkDetailInfo): ReturnTypes => {
 		].filter((ccl) => ccl !== '');
 	}, [workDetailData]);
 
-	return [isMine, cclInstruction];
+	return [workDetailData, isMine, cclInstruction];
 };
 
 export default useGetWorkDetail;

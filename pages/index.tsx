@@ -1,17 +1,12 @@
-import type { InferGetServerSidePropsType } from 'next';
-import { GetServerSideProps } from 'next';
 import FeedList from 'components/features/home/feed-list';
 import { useDispatch } from 'react-redux';
 import { responseSuccessGuide } from 'stores/slices/user-slice';
 import styled from 'styled-components';
 import Banner from 'assets/images/home/oasis_banner@2x.png';
 import { useEffect } from 'react';
-import API_URL, { API_HOST } from 'apis/api';
-import axios from 'axios';
-import { AMOUNT_OF_DATA_AT_ONCE } from 'constants/swr';
-import { HomeFeed } from 'types/work';
 import Image from 'next/image';
-import WithAuth from 'utils/HOC/withAuth';
+import useCheckUserData from 'hooks/useCheckUserData';
+import { useRouter } from 'next/router';
 
 export const HomeBanner = styled.button`
 	display: flex;
@@ -29,30 +24,12 @@ export const HomeContainer = styled.main`
 	padding: 5.6% 3.3%;
 `;
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
-	const { query } = context;
+const Home = () => {
+	useCheckUserData();
 
-	const {
-		feed: { basic },
-	} = API_URL;
-
-	const feedFallbackData: HomeFeed[] = await axios
-		.get(`${API_HOST}${basic}?category=ALL&page=0&size=${AMOUNT_OF_DATA_AT_ONCE}`)
-		.then((response) => response.data.artLogSummaryList);
-
-	if (!query) {
-		return {
-			props: { query: null, feedFallbackData },
-		};
-	}
-
-	return {
-		props: { query, feedFallbackData },
-	};
-};
-
-const Home = ({ query, feedFallbackData }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
 	const dispatch = useDispatch();
+
+	const { query } = useRouter();
 
 	useEffect(() => {
 		if (query?.signup_success) {
@@ -75,14 +52,14 @@ const Home = ({ query, feedFallbackData }: InferGetServerSidePropsType<typeof ge
 
 	return (
 		<>
-			<HomeBanner type="button" onClick={handleClickBanner} aria-label="오아시스 서비스 소개 배너">
-				<Image src={Banner} alt="" />
+			<HomeBanner type="button" onClick={handleClickBanner}>
+				<Image src={Banner} alt="오아시스 서비스 소개 배너" />
 			</HomeBanner>
 			<HomeContainer>
-				<FeedList feedFallbackData={feedFallbackData} />
+				<FeedList />
 			</HomeContainer>
 		</>
 	);
 };
 
-export default WithAuth(Home);
+export default Home;

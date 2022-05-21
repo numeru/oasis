@@ -9,12 +9,14 @@ const workService = new WorkService();
 
 type ReturnTypes = () => Promise<void>;
 
-const useDeleteWork = (workId: string): ReturnTypes => {
+const useDeleteWork = (workId: string | undefined): ReturnTypes => {
 	const dispatch = useDispatch();
 
 	const Router = useRouter();
 
 	const handleDeleteWork = async () => {
+		if (!workId) return;
+
 		try {
 			const statusCode = await workService.deleteWork(workId);
 

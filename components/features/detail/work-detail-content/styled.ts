@@ -1,4 +1,8 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+
+type StyledProps = {
+	expanded: boolean;
+};
 
 export const WorkDetailIntro = styled.section`
 	& > span {
@@ -82,6 +86,15 @@ export const WorkSubInfoToggleButton = styled.button`
 		font-family: var(--font-nanum-bold);
 		margin-right: 14px;
 		line-height: 14px;
+	}
+
+	& > svg {
+		margin-bottom: 2px;
+		${({ expanded }: StyledProps) =>
+			expanded &&
+			css`
+				transform: rotate(180deg);
+			`}
 	}
 `;
 

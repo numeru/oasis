@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import ArrowBackIcon from 'assets/images/mypage/arrow_back_icon.svg';
 import { useRouter } from 'next/router';
+import { useSelector } from 'react-redux';
+import { selectUI } from 'stores/store';
 
 export const SubHeaderContainer = styled.header`
 	position: sticky;
@@ -37,15 +39,16 @@ type Props = {
 	buttonName: string;
 	buttonType: 'button' | 'submit';
 	clickFn: any;
-	isButtonVisible: boolean;
 };
 
-const SubHeader = ({ buttonName, buttonType, clickFn, isButtonVisible }: Props) => {
+const SubHeader = ({ buttonName, buttonType, clickFn }: Props) => {
 	const Router = useRouter();
 
 	const backToPrevPage = () => {
 		Router.back();
 	};
+
+	const { isButtonVisible } = useSelector(selectUI);
 
 	return (
 		<SubHeaderContainer>

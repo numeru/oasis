@@ -12,7 +12,7 @@ import { HomeFeed } from 'types/work';
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
-import WithAuth from 'utils/HOC/withAuth';
+import useCheckUserData from 'hooks/useCheckUserData';
 
 const UserPageContainer = styled.main`
 	width: 100%;
@@ -55,34 +55,16 @@ const User = ({
 	userInfoFallbackData,
 	userWorkFallbackData,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+	useCheckUserData();
+
 	const { uuid } = useSelector(selectUser);
 	const Router = useRouter();
 
 	useEffect(() => {
 		if (userId === uuid) {
-			Router.replace('/mypage', undefined, {
-				shallow: true,
-			});
+			Router.replace('/mypage');
 		}
 	}, [userId, uuid]);
-
-	useEffect(() => {
-		const handleRouteChange = (url: string) => {
-			Router.events.emit('routeChangeError');
-			// Router.replace(Router.asPath, undefined, {
-			// 	shallow: true,
-			// });
-
-			console.log(`App is changing to ${url}`);
-			throw 'asdads';
-		};
-
-		Router.events.on('routeChangeStart', handleRouteChange);
-
-		return () => {
-			Router.events.off('routeChangeStart', handleRouteChange);
-		};
-	}, []);
 
 	return (
 		<UserPageContainer>
@@ -92,4 +74,4 @@ const User = ({
 	);
 };
 
-export default WithAuth(User);
+export default User;

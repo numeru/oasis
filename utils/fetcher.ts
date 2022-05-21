@@ -1,8 +1,10 @@
 import axios from 'axios';
 import { apiWithInterceptor } from 'stores/sagas/user-saga';
+import { HomeFeed } from 'types/work';
 import { getStorageItem, storageAccessKey, storageTokenType } from './local-storage';
 
-export const feedFetcher = (url: string) => axios.get(url).then((response) => response.data.artLogSummaryList);
+export const feedFetcher = (url: string): Promise<HomeFeed[]> =>
+	axios.get(url).then((response) => response.data.artLogSummaryList);
 
 export const worksFetcher = (url: string) => {
 	const accessToken = getStorageItem(storageAccessKey);

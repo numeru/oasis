@@ -1,18 +1,28 @@
+import { useRouter } from 'next/router';
+import { Dispatch, SetStateAction, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import UserService from 'apis/user/user-service';
 import { checkUserStart, responseErrorWarning, responseSuccessGuide, throwTokenError } from 'stores/slices/user-slice';
 import { TOKEN_ERROR } from 'constants/errors';
 import { BASIC_ERROR_MESSAGE, RESPONSE_STATUS_200, RESPONSE_STATUS_400 } from 'constants/api';
-import { useDispatch } from 'react-redux';
 import { UserUploadFile } from 'types/upload';
-import { useRouter } from 'next/router';
+import { selectUser } from 'stores/store';
 
 const userService = new UserService();
 
 const useUploadProfile = (
 	userIntroduction: string,
+	setUserIntroduction: Dispatch<SetStateAction<string>>,
 	profileImage: UserUploadFile | null,
 	setIsEdited: React.Dispatch<React.SetStateAction<boolean>>,
 ) => {
+	const userSelector = useSelector(selectUser);
+	const { profileDescription } = userSelector;
+
+	useEffect(() => {
+		setUserIntroduction(profileDescription);
+	}, [profileDescription]);
+
 	const dispatch = useDispatch();
 
 	const Router = useRouter();

@@ -87,7 +87,7 @@ const UploadWorkForm = ({ setIsEdited }: Props) => {
 
 	return (
 		<>
-			<SubHeader buttonName="저장" buttonType="submit" clickFn={submitUploadWorkForm} isButtonVisible={true} />
+			<SubHeader buttonName="저장" buttonType="submit" clickFn={submitUploadWorkForm} />
 			<MyPageContainer>
 				<UploadForm>
 					<h2>새 포트폴리오 등록</h2>

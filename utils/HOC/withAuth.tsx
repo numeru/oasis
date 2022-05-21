@@ -6,29 +6,7 @@ import { RESPONSE_STATUS_200 } from 'constants/api';
 import API_URL from 'apis/api';
 import { getStorageItem, storageAccessKey, storageTokenType } from 'utils/local-storage';
 import { apiWithInterceptor } from 'stores/sagas/user-saga';
-import styled from 'styled-components';
-import Image from 'next/image';
-import LoadingIndicatorImage from 'assets/images/loadingIndicator/loading_indicator.png';
-
-const WhiteLoadingPage = styled.div`
-	width: 100%;
-	height: 80vh;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-`;
-
-export const LoadingIndicator = styled(Image)`
-	animation: spin 800ms infinite linear;
-	@keyframes "spin" {
-		from {
-			transform: rotate(0deg);
-		}
-		to {
-			transform: rotate(359deg);
-		}
-	}
-`;
+import WhiteLoadingSection from 'components/shared/white-loading-section';
 
 const WithAuth = (Component: any, block = false) => {
 	const AuthenticatedComponent = () => {
@@ -87,13 +65,7 @@ const WithAuth = (Component: any, block = false) => {
 			checkUserData();
 		}, []);
 
-		return isAllowed ? (
-			<Component />
-		) : (
-			<WhiteLoadingPage>
-				<LoadingIndicator src={LoadingIndicatorImage} alt="" width={30} height={30} />
-			</WhiteLoadingPage>
-		);
+		return isAllowed ? <Component /> : <WhiteLoadingSection height="80vh" />;
 	};
 
 	return AuthenticatedComponent;
