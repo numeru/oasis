@@ -32,9 +32,13 @@
 
 ```
 client
+└── public
+|   └── assets
+|       └── images
+|       └── fonts
+|
 └── src
     ├── apis                         # api 관련 클래스
-    ├── assets                       # 이미지, 폰트
     └── components
     |   └── layout                   # 페이지를 둘러싸는 공통 레이아웃
     |   └── shared                   # 공통 컴포넌트 라이브러리
