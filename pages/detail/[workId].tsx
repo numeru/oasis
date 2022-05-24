@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import styled from 'styled-components';
-import WorkDetailContent from 'components/features/detail/work-detail-content';
+import WorkDetailContent from 'components/features/Detail/WorkDetailContent';
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next';
 import { ParsedUrlQuery } from 'querystring';
 import axios from 'axios';
@@ -8,7 +8,7 @@ import API_URL, { API_HOST } from 'apis/api';
 import wrapper from 'stores/store';
 import { WorkDetailInfo } from 'types/work';
 import { changeHeader, initHeader } from 'stores/slices/ui-slice';
-import SubHeader from 'components/layout/right-side/sub-header';
+import SubHeader from 'components/layout/RightSide/SubHeader';
 import useCheckUserData from 'hooks/useCheckUserData';
 
 const DetailContainer = styled.main`
@@ -60,13 +60,13 @@ const WorkDetail = ({
 
 	const [showDeleteModal, setShowDeleteModal] = useState(false);
 
-	const handleClickDeleteWorkButton = () => {
+	const handleClickDeleteWorkButton = useCallback(() => {
 		setShowDeleteModal(true);
-	};
+	}, []);
 
-	const handleClickCancelButton = () => {
+	const handleClickCancelButton = useCallback(() => {
 		setShowDeleteModal(false);
-	};
+	}, []);
 
 	return (
 		<>

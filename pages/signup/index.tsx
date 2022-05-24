@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import SignUpForm from 'components/features/sign-up/sign-up-form';
-import { SignUpHeader } from 'components/features/sign-up/sign-up-form/styled';
+import SignUpForm from 'components/features/SignUp/SignUpForm';
+import { SignUpHeader } from 'components/features/SignUp/SignUpForm/styled';
 import WithAuth from 'utils/HOC/withAuth';
 
 export const SignUpContainer = styled.main`

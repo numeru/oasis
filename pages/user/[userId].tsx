@@ -1,5 +1,5 @@
-import UserInfo from 'components/features/user/user-info';
-import UserWorks from 'components/features/user/user-works';
+import UserInfo from 'components/features/User/UserInfo';
+import UserWorks from 'components/features/User/UserWorks';
 import styled from 'styled-components';
 import { selectUser } from 'stores/store';
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next';

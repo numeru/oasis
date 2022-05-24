@@ -1,4 +1,4 @@
-import ChangePasswordForm from 'components/features/change-password/change-password-form';
+import ChangePasswordForm from 'components/features/ChangePassword/ChangePasswordForm';
 import styled from 'styled-components';
 import WithAuth from 'utils/HOC/withAuth';
 

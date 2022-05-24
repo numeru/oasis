@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux';
 import { userLogout } from 'stores/slices/user-slice';
-import AuthService from 'apis/auth/auth-service';
+import AuthService from 'apis/Auth/auth-service';
 import { useRouter } from 'next/router';
 
 const authService = new AuthService();

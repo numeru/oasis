@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { MyPageContainer } from '..';
 import WithAuth from 'utils/HOC/withAuth';
-import MyLikesList from 'components/features/likes/my-likes-list';
+import MyLikesList from 'components/features/Likes/MyLikesList';
 
 export const MyLikes = styled.section`
 	width: 100%;

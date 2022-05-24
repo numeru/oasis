@@ -1,7 +1,7 @@
-import SchoolCertificationForm from 'components/features/school-certification/school-certification-form';
+import SchoolCertificationForm from 'components/features/SchoolCertification/SchoolCertificationForm';
 import ExampleschoolIdCard from 'assets/images/school-certification/school_id_example.png';
 import styled from 'styled-components';
-import NextResponsiveImage from 'components/shared/responsive-image';
+import NextResponsiveImage from 'components/shared/ResponsiveImage';
 import WithAuth from 'utils/HOC/withAuth';
 
 export const SchoolCertificationContainer = styled.main`

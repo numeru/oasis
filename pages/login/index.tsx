@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import LoginForm from 'components/features/login/login-form';
-import { FindAccountButton, LoginHeader } from 'components/features/login/login-form/styled';
+import LoginForm from 'components/features/Login/LoginForm';
+import { FindAccountButton, LoginHeader } from 'components/features/Login/LoginForm/styled';
 import Link from 'next/link';
 import WithAuth from 'utils/HOC/withAuth';
 

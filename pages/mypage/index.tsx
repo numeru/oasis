@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import MyInfo from 'components/features/mypage/my-info';
-import MyWorks from 'components/features/mypage/my-works';
+import MyInfo from 'components/features/MyPage/MyInfo';
+import MyWorks from 'components/features/MyPage/MyWorks';
 import WithAuth from 'utils/HOC/withAuth';
 
 export const MyPageContainer = styled.main`

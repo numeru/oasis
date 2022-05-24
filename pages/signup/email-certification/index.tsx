@@ -1,7 +1,7 @@
-import { useState } from 'react';
-import EmailCertificationForm from 'components/features/email-certification/certification-form';
+import { useCallback, useState } from 'react';
+import EmailCertificationForm from 'components/features/EmailCertification/CertificationForm';
 import { RESEND_TIME_OUT } from 'constants/alert';
-import ConfirmModal from 'components/shared/confirm-modal';
+import ConfirmModal from 'components/shared/ConfirmModal';
 import { GetServerSideProps } from 'next';
 import { SignUpContainer } from '..';
 import WithAuth from 'utils/HOC/withAuth';
@@ -26,9 +26,9 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 const EmailCertification = () => {
 	const [showAlertModal, setShowAlertModal] = useState(false);
 
-	const handleClickConfirmButton = () => {
+	const handleClickConfirmButton = useCallback(() => {
 		setShowAlertModal(false);
-	};
+	}, []);
 
 	return (
 		<SignUpContainer>

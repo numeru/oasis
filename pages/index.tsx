@@ -1,4 +1,4 @@
-import FeedList from 'components/features/home/feed-list';
+import FeedList from 'components/features/Home/FeedList';
 import { useDispatch } from 'react-redux';
 import { responseSuccessGuide } from 'stores/slices/user-slice';
 import styled from 'styled-components';
@@ -29,15 +29,21 @@ const Home = () => {
 
 	const dispatch = useDispatch();
 
-	const { query } = useRouter();
+	const { query, replace } = useRouter();
 
 	useEffect(() => {
 		if (query?.signup_success) {
 			dispatch(responseSuccessGuide('회원가입 성공! 반가워요 :)'));
+			replace('/', undefined, {
+				shallow: true,
+			});
 			return;
 		}
 		if (query?.login_success) {
 			dispatch(responseSuccessGuide('로그인 성공! 오아시스에 오신 걸 환영해요'));
+			replace('/', undefined, {
+				shallow: true,
+			});
 			return;
 		}
 	}, []);

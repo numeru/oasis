@@ -1,7 +1,7 @@
-import { useState } from 'react';
-import PasswordInitializationForm from 'components/features/inquiry-account/password-initialization-form';
+import { useCallback, useState } from 'react';
+import PasswordInitializationForm from 'components/features/InquiryAccount/PasswordInitializationForm';
 import styled from 'styled-components';
-import ConfirmModal from 'components/shared/confirm-modal';
+import ConfirmModal from 'components/shared/ConfirmModal';
 import { useRouter } from 'next/router';
 import WithAuth from 'utils/HOC/withAuth';
 
@@ -32,13 +32,13 @@ const AccoutInquiry = () => {
 
 	const Router = useRouter();
 
-	const handleClickConfirmButton = () => {
+	const handleClickConfirmButton = useCallback(() => {
 		Router.push('/login');
-	};
+	}, [Router]);
 
-	const showConfirmModal = () => {
+	const showConfirmModal = useCallback(() => {
 		setIsConfirmModalVisible(true);
-	};
+	}, []);
 
 	return (
 		<>
