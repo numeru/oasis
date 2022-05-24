@@ -16,7 +16,6 @@ class ErrorBoundary extends Component<Props, State> {
 	}
 
 	static getDerivedStateFromError(error: any) {
-		console.log('Ads');
 		return { hasError: true };
 	}
 
