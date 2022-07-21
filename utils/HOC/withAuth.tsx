@@ -6,7 +6,7 @@ import { RESPONSE_STATUS_200 } from 'constants/api';
 import API_URL from 'apis/api';
 import { getStorageItem, storageAccessKey, storageTokenType } from 'utils/local-storage';
 import { apiWithInterceptor } from 'stores/sagas/user-saga';
-import WhiteLoadingSection from 'components/shared/white-loading-section';
+import WhiteLoadingSection from 'components/shared/WhiteLoadingSection';
 
 const WithAuth = (Component: any, block = false) => {
 	const AuthenticatedComponent = () => {

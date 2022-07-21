@@ -1,10 +1,18 @@
-import { SignUpButton, SignUpCancelButton, SignUpFormCheckBox, SignUpFormContainer } from './styled';
+import {
+	SignUpButton,
+	SignUpFormCheckBoxWrapper,
+	SignUpCancelButton,
+	SignUpFormCheckBox,
+	SignUpFormContainer,
+	SignUpPolicyButton,
+} from './styled';
 import { AlertFailModal } from 'components/shared/AlertMessages/styled';
 import useSignUpFormValidation from 'components/features/SignUp/SignUpForm/useSignUpFormValidation';
 import FormItem from 'components/shared/FormItem';
 import { useSelector } from 'react-redux';
 import { selectSignUp } from 'stores/store';
 import useInput from 'hooks/useInput';
+import ArrowRightIcon from 'assets/images/signup/arrow_right_icon.svg';
 
 const SignUpForm = () => {
 	const {
@@ -95,7 +103,7 @@ const SignUpForm = () => {
 				</ul>
 
 				<ul>
-					<li>
+					<SignUpFormCheckBoxWrapper>
 						<SignUpFormCheckBox>
 							<input
 								type="checkbox"
@@ -104,18 +112,24 @@ const SignUpForm = () => {
 								aria-required="true"
 								aria-checked={privacy}
 							/>
-							[필수] 개인정보처리방침에 동의합니다
-							<span>&gt;</span>
+							<span>[필수] 개인정보처리방침에 동의합니다</span>
 						</SignUpFormCheckBox>
-					</li>
-					<li>
+						<SignUpPolicyButton type="button">
+							<ArrowRightIcon alt="개인 정보 처리 방침 상세 보기" />
+						</SignUpPolicyButton>
+					</SignUpFormCheckBoxWrapper>
+
+					<SignUpFormCheckBoxWrapper>
 						<SignUpFormCheckBox>
 							<input type="checkbox" checked={terms} onChange={handleTerms} aria-required="true" aria-checked={terms} />
-							[필수] 이용약관에 동의합니다
-							<span>&gt;</span>
+							<span>[필수] 이용약관에 동의합니다</span>
 						</SignUpFormCheckBox>
-					</li>
-					<li>
+						<SignUpPolicyButton type="button">
+							<ArrowRightIcon alt="이용 약관 상세 보기" />
+						</SignUpPolicyButton>
+					</SignUpFormCheckBoxWrapper>
+
+					<SignUpFormCheckBoxWrapper>
 						<SignUpFormCheckBox>
 							<input
 								type="checkbox"
@@ -124,10 +138,12 @@ const SignUpForm = () => {
 								aria-required="true"
 								aria-checked={marketing}
 							/>
-							[선택] 마케팅정보수신에 동의합니다
-							<span>&gt;</span>
+							<span>[선택] 마케팅정보수신에 동의합니다</span>
 						</SignUpFormCheckBox>
-					</li>
+						<SignUpPolicyButton type="button">
+							<ArrowRightIcon alt="마케팅 정보 수신 상세 보기" />
+						</SignUpPolicyButton>
+					</SignUpFormCheckBoxWrapper>
 				</ul>
 
 				<SignUpButton type="submit">회원가입</SignUpButton>

@@ -50,3 +50,8 @@ export type CheckUserResult = {
 	status: string;
 	user: UserData | null;
 };
+
+export type SendVerificationCodeResult = {
+	uuid: string;
+	createDt: string;
+};

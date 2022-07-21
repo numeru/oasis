@@ -28,33 +28,24 @@ export const getServerSideProps: GetServerSideProps = wrapper.getServerSideProps
 	} = API_URL;
 
 	try {
-		const workDetailFallbackData: WorkDetailInfo = await axios
-			.get(`${API_HOST}${basic}/${workId}`)
-			.then((response) => response.data);
+		const workDetailFallbackData = await axios.get(`${API_HOST}${basic}/${workId}`).then((response) => response.data);
 
 		store.dispatch(changeHeader({ headerType: 'sub', isButtonVisible: false }));
 
 		return {
-			props: { workId, workDetailFallbackData },
+			props: { workDetailFallbackData },
 		};
 	} catch (error) {
-		store.dispatch(initHeader());
-
 		return {
-			redirect: {
-				destination: '/',
-				permanent: false,
-			},
+			props: { workDetailFallbackData: null },
 		};
 	}
 });
 
 const WorkDetail = ({
-	workId,
 	workDetailFallbackData,
 }: InferGetServerSidePropsType<{
-	workId: string;
-	workDetailFallbackData: WorkDetailInfo;
+	workDetailFallbackData: WorkDetailInfo | null;
 }>) => {
 	useCheckUserData();
 
@@ -73,7 +64,6 @@ const WorkDetail = ({
 			<SubHeader buttonName="삭제" buttonType="button" clickFn={handleClickDeleteWorkButton} />
 			<DetailContainer>
 				<WorkDetailContent
-					workId={workId}
 					workDetailFallbackData={workDetailFallbackData}
 					showDeleteModal={showDeleteModal}
 					handleClickCancelButton={handleClickCancelButton}

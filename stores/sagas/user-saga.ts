@@ -1,4 +1,4 @@
-import AuthService from 'apis/auth/auth-service';
+import AuthService from 'apis/Auth/auth-service';
 import API_URL, { API_HOST } from 'apis/api';
 import axios, { AxiosResponse } from 'axios';
 import { all, fork, put, takeLatest, call } from 'redux-saga/effects';
@@ -17,7 +17,7 @@ import {
 } from 'stores/slices/user-slice';
 import { delay } from 'stores/sagas/root';
 import { getStorageItem, storageAccessKey, storageTokenType } from 'utils/local-storage';
-import { CheckUserResult } from 'apis/auth/types';
+import { CheckUserResult } from 'apis/Auth/types';
 import { RESPONSE_STATUS_200, RESPONSE_STATUS_400, RESPONSE_STATUS_500 } from 'constants/api';
 import { ALERT_TIME_OUT } from 'constants/alert';
 

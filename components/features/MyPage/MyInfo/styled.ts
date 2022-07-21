@@ -1,5 +1,5 @@
 import { IoMdHeart } from 'react-icons/io';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
 type StyledProps = {
 	$isUniversityVerified?: boolean;

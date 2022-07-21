@@ -6,10 +6,15 @@ import { COPYRIGHT_INSTRUCTIONS } from 'constants/copyright';
 import useSWRImmutable from 'swr/immutable';
 import API_URL, { API_HOST } from 'apis/api';
 import { workDetailFetcher } from 'utils/fetcher';
+import { useRouter } from 'next/router';
 
 type ReturnTypes = [WorkDetailInfo | undefined, boolean, string[]];
 
-const useGetWorkDetail = (workId: string, workDetailFallbackData: WorkDetailInfo): ReturnTypes => {
+const useGetWorkDetail = (workDetailFallbackData: WorkDetailInfo | null): ReturnTypes => {
+	const {
+		query: { workId },
+	} = useRouter();
+
 	const { uuid } = useSelector(selectUser);
 
 	const {
@@ -17,7 +22,7 @@ const useGetWorkDetail = (workId: string, workDetailFallbackData: WorkDetailInfo
 	} = API_URL;
 
 	const { data: workDetailData } = useSWRImmutable<WorkDetailInfo>(`${API_HOST}${basic}/${workId}`, workDetailFetcher, {
-		fallbackData: workDetailFallbackData,
+		fallbackData: workDetailFallbackData ? workDetailFallbackData : undefined,
 	});
 
 	const isMine = useMemo(() => workDetailData?.user?.userUuid === uuid, [workDetailData, uuid]);

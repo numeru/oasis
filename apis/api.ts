@@ -18,6 +18,8 @@ const API_URL = {
 		logout: '/signOut',
 		check: '/token-health',
 		token: '/issue-token',
+		sendCode: '/email/verification-code',
+		verifyCode: '/email/verification-code/verifying',
 	},
 	work: {
 		basic: '/art-logs',

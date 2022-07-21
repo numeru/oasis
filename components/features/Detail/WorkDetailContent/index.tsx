@@ -24,14 +24,13 @@ import useGetWorkDetail from './useGetWorkDetail';
 import useChangeHeader from 'hooks/useChangeHeader';
 
 type Props = {
-	workId: string;
-	workDetailFallbackData: WorkDetailInfo;
+	workDetailFallbackData: WorkDetailInfo | null;
 	showDeleteModal: boolean;
 	handleClickCancelButton: () => void;
 };
 
-const WorkDetailContent = ({ workId, workDetailFallbackData, showDeleteModal, handleClickCancelButton }: Props) => {
-	const [workDetailData, isMine, cclInstruction] = useGetWorkDetail(workId, workDetailFallbackData);
+const WorkDetailContent = ({ workDetailFallbackData, showDeleteModal, handleClickCancelButton }: Props) => {
+	const [workDetailData, isMine, cclInstruction] = useGetWorkDetail(workDetailFallbackData);
 
 	useChangeHeader('sub', isMine);
 

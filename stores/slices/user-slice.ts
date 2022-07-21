@@ -1,4 +1,4 @@
-import { UserData } from './../../apis/auth/types';
+import { UserData } from '../../apis/Auth/types';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { USER_STATUS_INACTIVE, USER_UNIVERSITY_NO_VERIFICATION } from 'constants/user';
 

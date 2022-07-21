@@ -1,23 +1,27 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import useInput from 'hooks/useInput';
 import { CompleteSignUpButton, CertificationForm, ResendButton } from './styled';
 import useCompleteSignUpForm from 'components/features/EmailCertification/CertificationForm/useCompleteSignUpForm';
 import { FormAlertMessage, FormInput, FormLabel } from 'components/shared/FormItem/styled';
 import useTimeOutState from 'hooks/useTimeOutState';
 import { RESEND_TIME_OUT } from 'constants/alert';
+import { useDispatch } from 'react-redux';
+import { responseSuccessGuide } from 'stores/slices/user-slice';
 
 type Props = {
 	setShowAlertModal: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 const EmailCertificationForm = ({ setShowAlertModal }: Props) => {
-	const [certificationCode, handleCertificationCode] = useInput('');
+	const [verificationCode, handleVerificationCode] = useInput('');
 
 	const [isValid, setIsValid] = useState(true);
 
-	const handleSubmitForm = useCompleteSignUpForm(certificationCode, setIsValid);
+	const [sendEmailVerificationCode, handleSubmitForm] = useCompleteSignUpForm(verificationCode, setIsValid);
 
 	const [isCodeSentAgain, setIsCodeSentAgain] = useTimeOutState(RESEND_TIME_OUT);
+
+	const dispatch = useDispatch();
 
 	const handleClickResendButton = () => {
 		if (isCodeSentAgain) {
@@ -25,10 +29,16 @@ const EmailCertificationForm = ({ setShowAlertModal }: Props) => {
 			return;
 		}
 
-		// 인증 번호 재전송 로직
+		sendEmailVerificationCode();
+
+		dispatch(responseSuccessGuide('인증번호가 재전송 되었습니다.'));
 
 		setIsCodeSentAgain(true);
 	};
+
+	useEffect(() => {
+		sendEmailVerificationCode();
+	}, []);
 
 	return (
 		<CertificationForm onSubmit={handleSubmitForm}>
@@ -42,8 +52,8 @@ const EmailCertificationForm = ({ setShowAlertModal }: Props) => {
 			<div>
 				<FormInput
 					id="email_certification_code"
-					value={certificationCode}
-					onChange={handleCertificationCode}
+					value={verificationCode}
+					onChange={handleVerificationCode}
 					placeholder="인증번호를 입력해주세요"
 					aria-required="true"
 					aria-invalid={!isValid}

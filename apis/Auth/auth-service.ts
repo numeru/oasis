@@ -10,7 +10,7 @@ import {
 } from 'utils/local-storage';
 import axios, { AxiosInstance } from 'axios';
 import API_URL, { API_HOST, BasicResult } from 'apis/api';
-import { LoginRequest, SignUpRequest, LoginResult } from 'apis/Auth/types';
+import { LoginRequest, SignUpRequest, LoginResult, SendVerificationCodeResult } from 'apis/Auth/types';
 import { TOKEN_ERROR } from 'constants/errors';
 
 export interface IAuthService {
@@ -109,6 +109,34 @@ class AuthService implements IAuthService {
 		removeStorageItem(storageAccessExp);
 		removeStorageItem(storageRefreshExp);
 		removeStorageItem(storageTokenType);
+	}
+
+	async sendEmailVerificationCode(email: string) {
+		const { sendCode } = this.authUrl;
+
+		const response = await this.base.post(`${sendCode}?email=${email}`);
+		const { uuid }: SendVerificationCodeResult = await response.data;
+
+		const statusCode = response.status;
+
+		return {
+			statusCode,
+			uuid,
+		};
+	}
+
+	async checkVerificationCode(uuid: string, verificationCode: string) {
+		const { verifyCode } = this.authUrl;
+
+		const data = {
+			uuid,
+			verificationCode,
+		};
+		const response = await this.base.post(verifyCode, data);
+
+		const statusCode = response.status;
+
+		return statusCode;
 	}
 
 	setAuthHeader() {

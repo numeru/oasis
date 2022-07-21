@@ -31,14 +31,24 @@ export const SignUpFormContainer = styled.form`
 	}
 `;
 
+export const SignUpFormCheckBoxWrapper = styled.li`
+	display: flex;
+	align-items: center;
+	margin-bottom: 5%;
+`;
+
 export const SignUpFormCheckBox = styled.label`
 	display: flex;
 	align-items: center;
 	font-size: 0.875rem;
 	padding-left: 2%;
-	margin-bottom: 5%;
 	cursor: pointer;
 	position: relative;
+	flex: 1;
+
+	& > span {
+		font-size: 0.875rem;
+	}
 
 	& > input {
 		width: 20px;
@@ -46,13 +56,6 @@ export const SignUpFormCheckBox = styled.label`
 		flex-shrink: 0;
 		margin: 0 5% 0 0;
 		cursor: pointer;
-	}
-
-	& > span {
-		position: absolute;
-		right: 4%;
-		font-family: var(--font-nanum-bold);
-		font-size: 0.9rem;
 	}
 `;
 
@@ -64,4 +67,17 @@ export const SignUpButton = styled(FormConfirmButton)`
 export const SignUpCancelButton = styled(FormCancelButton)`
 	width: 100%;
 	margin-bottom: 6.5%;
+`;
+
+export const SignUpPolicyButton = styled.button`
+	background-color: transparent;
+	font-family: var(--font-nanum-bold);
+	font-size: 0.9rem;
+	padding: 0;
+	margin-left: 8px;
+	width: 20px;
+	height: 20px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 `;
